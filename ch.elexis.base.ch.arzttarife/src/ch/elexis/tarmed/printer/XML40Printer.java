@@ -194,8 +194,12 @@ public class XML40Printer {
 		
 		Element detail = invoice.getChild("detail", ns); //$NON-NLS-1$
 		Element diagnosis = detail.getChild("diagnosis", ns); //$NON-NLS-1$
-		String type = diagnosis.getAttributeValue(Messages.RnPrintView_62);
-		
+		String type="TI-Code";
+		String diagCode="";
+		if(diagnosis!=null){
+			type = diagnosis.getAttributeValue(Messages.RnPrintView_62);
+			diagCode= diagnosis.getAttributeValue("code");
+		}
 		// TODO Cheap workaround, fix
 		if (type.equals("by_contract")) { //$NON-NLS-1$
 			type = "TI-Code"; //$NON-NLS-1$
@@ -205,7 +209,7 @@ public class XML40Printer {
 			text.replace("\\[F52\\]", ""); //$NON-NLS-1$ //$NON-NLS-2$
 			text.replace("\\[F53\\]", diagnosis.getText()); //$NON-NLS-1$
 		} else {
-			text.replace("\\[F52\\]", diagnosis.getAttributeValue("code")); //$NON-NLS-1$ //$NON-NLS-2$
+			text.replace("\\[F52\\]", diagCode); //$NON-NLS-1$
 			text.replace("\\[F53\\]", ""); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		
