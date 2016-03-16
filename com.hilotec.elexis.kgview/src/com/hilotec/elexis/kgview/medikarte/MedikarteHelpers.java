@@ -8,7 +8,6 @@ import com.hilotec.elexis.kgview.Preferences;
 import com.hilotec.elexis.kgview.data.FavMedikament;
 
 import ch.elexis.data.Patient;
-import ch.elexis.data.PersistentObject;
 import ch.elexis.data.Prescription;
 import ch.elexis.data.Query;
 import ch.rgw.tools.StringTool;
@@ -83,7 +82,7 @@ public class MedikarteHelpers {
 	{
 		// TODO: Koennte man mit einer Query sauberer loesen
 		List<Prescription> medis = medikarteMedikation(patient, false);
-		TimeTool max = new TimeTool(0);
+		TimeTool max = new TimeTool(0L);
 		TimeTool cur = new TimeTool();
 		for (Prescription p: medis) {
 			cur.set(p.getBeginDate());
