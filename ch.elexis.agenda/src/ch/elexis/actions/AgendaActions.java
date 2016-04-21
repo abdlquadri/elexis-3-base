@@ -28,6 +28,8 @@ import ch.elexis.core.data.activator.CoreHub;
 import ch.elexis.core.data.events.ElexisEventDispatcher;
 import ch.elexis.core.ui.actions.RestrictedAction;
 import ch.elexis.core.ui.icons.Images;
+import ch.elexis.core.ui.locks.AcquireLockBlockingUi;
+import ch.elexis.core.ui.locks.ILockHandler;
 import ch.elexis.core.ui.locks.LockRequestingRestrictedAction;
 
 /**
@@ -118,11 +120,20 @@ public class AgendaActions {
 						@Override
 						public void widgetSelected(SelectionEvent e){
 							Termin act = (Termin) ElexisEventDispatcher.getSelected(Termin.class);
-							if(!CoreHub.ls.acquireLock(act.storeToString()).isOk()) return;
-							MenuItem it = (MenuItem) e.getSource();
-							act.setStatus(it.getText());
-							ElexisEventDispatcher.reload(Termin.class);
-							CoreHub.ls.releaseLock(act.storeToString());
+							AcquireLockBlockingUi.aquireAndRun(act, new ILockHandler() {
+								@Override
+								public void lockFailed(){
+									// do nothing
+									
+								}
+								
+								@Override
+								public void lockAcquired(){
+									MenuItem it = (MenuItem) e.getSource();
+									act.setStatus(it.getText());
+									ElexisEventDispatcher.reload(Termin.class);
+								}
+							});
 						}
 					});
 				}

@@ -23,6 +23,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
@@ -108,16 +110,27 @@ public class KonsText implements IJournalArea {
 		text.setLayoutData(SWTHelper.getFillGridData(1, true, 1, true));
 		makeActions();
 
+		text.getControl().addDisposeListener(new DisposeListener() {
+
+			@Override
+			public void widgetDisposed(DisposeEvent e){
+				logEvent("widgetDisposed");
+				updateEintrag();
+				konsEditorHasFocus = false;
+			}
+
+		});
 		text.getControl().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e){
+				logEvent("focusGained");
 				konsEditorHasFocus = true;
 			}
 
 			@Override
 			public void focusLost(FocusEvent e){
+				logEvent("focusLost");
 				updateEintrag();
-
 				konsEditorHasFocus = false;
 			}
 		});
@@ -166,7 +179,7 @@ public class KonsText implements IJournalArea {
 		return versionBackAction;
 	}
 
-	public void updateEintrag(){
+	public synchronized void updateEintrag(){
 		if (actKons != null) {
 			if (actKons.getFall() == null) {
 				return;
@@ -183,7 +196,7 @@ public class KonsText implements IJournalArea {
 				if (hasKonsTextLock()) {
 					actKons.updateEintrag(text.getContentsAsXML(), false);
 					logEvent(
-						"saved rev. " + actKons.getHeadVersion() + text.getContentsPlaintext());
+						"saved rev. " + actKons.getHeadVersion() + " "+ text.getContentsPlaintext());
 					text.setDirty(false);
 
 					// update kons version label
@@ -204,7 +217,15 @@ public class KonsText implements IJournalArea {
 					}
 				}
 			} else {
-				log.debug("skipping ");
+				boolean check = (savedInitialKonsText == null) || (text == null) || savedInitialKonsText.equals(text.getContentsPlaintext());
+				if (check)
+				{
+					log.debug("skipping check vis " + text.isVisible() + " enabled " + text.isEnabled()+  " disposed " + text.isDisposed() + " " + text.getContentsPlaintext() + " initial " + savedInitialKonsText);
+				} else
+				{
+					log.debug("skipping check " + text.getContentsPlaintext() + " != initial " + savedInitialKonsText);
+					actKons.updateEintrag(text.getContentsAsXML(), false);
+				}
 			}
 		}
 	}
@@ -311,7 +332,7 @@ public class KonsText implements IJournalArea {
 	}
 
 	@Override
-	public void visible(boolean mode){
+	public synchronized void visible(boolean mode){
 		log.debug("visible mode " + mode);
 	}
 
@@ -395,8 +416,6 @@ public class KonsText implements IJournalArea {
 			setKonsText(null, 0, putCaretToEnd);
 			logEvent("updateKonsultation: null");
 		}
-		// TODO: ngngn konsFallArea.layout();
-
 	}
 
 	/*
@@ -419,11 +438,7 @@ public class KonsText implements IJournalArea {
 	 *            if true, activate text field ant put caret to the end
 	 */
 	@Override
-	public void setKons(Konsultation k, boolean putCaretToEnd){
-		// save probably not yet saved changes, also
-		// TODO: Niklaus das ist die falsche Stelle, wir müssen updateEintrag(); oder ähnliches beim Verlassen des Fenster oder ähnlichem
-		// TODO: machen!!
-
+	public synchronized void setKons(Konsultation k, boolean putCaretToEnd){
 		// make sure to unlock the kons edit field and release the lock
 		removeKonsTextLock();
 		actKons = k;
@@ -431,15 +446,24 @@ public class KonsText implements IJournalArea {
 			actPatient = null;
 			logEvent("setKons null");
 		} else {
+			boolean different = actPatient != null && k != null && !actPatient.getId().equals(k.getFall().getPatient().getId());
+			if (different) {
+				Patient newPat =  k.getFall().getPatient();
+				logEvent("changed actPatient " +  actPatient.getId() + "  != patient "+ newPat.getId() + " for kon. Skipping ??  "+  newPat.getPersonalia());
+				creatingKons = false;
+				return;
+			}
 			actPatient = actKons.getFall().getPatient();
 		}
 		if (savedInitialKonsText != null && actKons != null) {
 			logEvent("set kons patient key " + text.getData(PATIENT_KEY) + " len "
-				+ savedInitialKonsText.length());
+					+ savedInitialKonsText.length());
 			if (savedInitialKonsText.length() > 0
 				&& !actKons.getEintrag().toString().equalsIgnoreCase(text.getContentsAsXML())) {
-				logEvent("in DB:" + actKons.getEintrag().getHead().toString());
 				logEvent("in Text:" + text.getContentsAsXML());
+				if (actKons != null && actKons.getEintrag() != null && actKons.getEintrag().getHead() != null) {
+					logEvent("in DB:" + actKons.getEintrag().getHead().toString());
+				}
 				actKons.updateEintrag(savedInitialKonsText, false);
 			}
 			savedInitialKonsText = null;
@@ -461,7 +485,7 @@ public class KonsText implements IJournalArea {
 	/**
 	 * Set the version label to reflect the current kons' latest version Called by: updateEintrag()
 	 */
-	void updateKonsVersionLabel(){
+	private void updateKonsVersionLabel(){
 		if (actKons != null) {
 			int version = actKons.getHeadVersion();
 			logEvent("Update Version Label: " + version);
@@ -478,7 +502,7 @@ public class KonsText implements IJournalArea {
 		}
 	}
 
-	void setKonsText(Konsultation b, int version, boolean putCaretToEnd){
+	private void setKonsText(Konsultation b, int version, boolean putCaretToEnd){
 		if (b != null) {
 			String ntext = "";
 			if ((version >= 0) && (version <= b.getHeadVersion())) {
@@ -540,7 +564,7 @@ public class KonsText implements IJournalArea {
 	}
 
 	@Override
-	public void activation(boolean mode){
+	public synchronized void activation(boolean mode){
 		logEvent("activation mode " + mode);
 		if (mode == false) {
 			// text is neither dirty nor changed.
@@ -548,10 +572,11 @@ public class KonsText implements IJournalArea {
 			if (actKons == null) {
 				return;
 			}
-			boolean noLeistungen = actKons.getLeistungen() == null || actKons.getLeistungen().isEmpty();
-			log.debug(actPatient.getPersonalia() + " delete3 the kons? " + text.getContentsPlaintext().length() + " noLeistungen " + noLeistungen);
-			if (text.getContentsPlaintext().length() == 0
-				&& (noLeistungen)) {
+			boolean noLeistungen =
+				actKons.getLeistungen() == null || actKons.getLeistungen().isEmpty();
+			log.debug(actPatient.getPersonalia() + " delete3 the kons? "
+				+ text.getContentsPlaintext().length() + " noLeistungen " + noLeistungen);
+			if (text.getContentsPlaintext().length() == 0 && (noLeistungen)) {
 				Fall f = actKons.getFall();
 				Konsultation[] ret = f.getBehandlungen(false);
 				actKons.delete(true);
@@ -565,6 +590,7 @@ public class KonsText implements IJournalArea {
 					// f.delete(true);
 				}
 			}
+			updateEintrag();
 			setKons(null, false);
 			text.setData(PATIENT_KEY, null);
 			savedInitialKonsText = "";
@@ -574,7 +600,7 @@ public class KonsText implements IJournalArea {
 		}
 	}
 
-	public void registerUpdateHeartbeat(){
+	public synchronized void registerUpdateHeartbeat(){
 		Heartbeat heat = Heartbeat.getInstance();
 		heat.addListener(new IatrixHeartListener() {
 			private int konsTextSaverPeriod;

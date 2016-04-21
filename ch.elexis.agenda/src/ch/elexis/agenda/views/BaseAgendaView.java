@@ -39,6 +39,7 @@ import ch.elexis.agenda.acl.ACLContributor;
 import ch.elexis.agenda.data.ICalTransfer;
 import ch.elexis.agenda.data.IPlannable;
 import ch.elexis.agenda.data.Termin;
+import ch.elexis.agenda.data.TerminUtil;
 import ch.elexis.agenda.preferences.PreferenceConstants;
 import ch.elexis.agenda.series.SerienTermin;
 import ch.elexis.agenda.series.ui.SerienTerminDialog;
@@ -58,6 +59,8 @@ import ch.elexis.core.ui.actions.RestrictedAction;
 import ch.elexis.core.ui.dialogs.KontaktSelektor;
 import ch.elexis.core.ui.events.ElexisUiEventListenerImpl;
 import ch.elexis.core.ui.icons.Images;
+import ch.elexis.core.ui.locks.AcquireLockBlockingUi;
+import ch.elexis.core.ui.locks.ILockHandler;
 import ch.elexis.core.ui.locks.LockRequestingRestrictedAction;
 import ch.elexis.core.ui.util.SWTHelper;
 import ch.elexis.data.Anwender;
@@ -233,7 +236,10 @@ public abstract class BaseAgendaView extends ViewPart implements HeartListener,
 		
 		public Object[] getElements(Object inputElement){
 			if (CoreHub.acl.request(ACLContributor.DISPLAY_APPOINTMENTS)) {
-				return Plannables.loadDay(agenda.getActResource(), agenda.getActDate());
+				String resource = agenda.getActResource();
+				TimeTool date = agenda.getActDate();
+				TerminUtil.updateBoundaries(resource, date);
+				return Plannables.loadDay(resource, date);
 			} else {
 				return new Object[0];
 			}
@@ -318,8 +324,19 @@ public abstract class BaseAgendaView extends ViewPart implements HeartListener,
 
 			@Override
 			public void doRun(Termin element) {
-				TerminDialog dlg = new TerminDialog(element);
-				dlg.open();
+					AcquireLockBlockingUi.aquireAndRun(element, new ILockHandler() {
+						
+						@Override
+						public void lockFailed(){
+							// do nothing
+						}
+						
+						@Override
+						public void lockAcquired(){
+							TerminDialog dlg = new TerminDialog(element);
+							dlg.open();
+						}
+					});
 				if (tv != null) {
 					tv.refresh(true);
 				}

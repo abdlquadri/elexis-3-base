@@ -10,6 +10,8 @@ import ch.elexis.core.data.interfaces.IVerrechenbar;
 import ch.elexis.core.text.model.Samdas;
 import ch.elexis.core.text.model.Samdas.Record;
 import ch.elexis.core.ui.dialogs.SelectOrCreateOpenKonsDialog;
+import ch.elexis.core.ui.locks.AcquireLockBlockingUi;
+import ch.elexis.core.ui.locks.ILockHandler;
 import ch.elexis.data.Artikel;
 import ch.elexis.data.Konsultation;
 import ch.elexis.data.Patient;
@@ -46,29 +48,42 @@ public class AddVaccinationToKons {
 		if (kons == null || !kons.isEditable(false)) {
 			return null;
 		} else { // (kons != null && kons.isEditable(false)) {
-			kons.addLeistung(art);
-			
-			// update kons. text
-			Samdas samdas = new Samdas(kons.getEintrag().getHead());
-			Record rec = samdas.getRecord();
-			String recText = rec.getText();
-			recText += "\nImpfung - " + art.getName();
-			rec.setText(recText);
-			kons.updateEintrag(samdas.toString(), true);
-			
-			boolean addedCons = true;
-			List<Verrechnet> leistungen = kons.getLeistungen();
-			for (Verrechnet verrechnet : leistungen) {
-				IVerrechenbar verrechenbar = verrechnet.getVerrechenbar();
-				if (verrechenbar != null && verrechenbar.getCodeSystemName().equals("Tarmed")
-					&& verrechenbar.getCode().equals(TARMED_5MIN_TARIF)) {
-					addedCons = false;
-					break;
+			AcquireLockBlockingUi.aquireAndRun(kons, new ILockHandler() {
+				
+				@Override
+				public void lockFailed(){
+					// do nothing
+					
 				}
-			}
-			if (addedCons && (consVerrechenbar != null)) {
-				kons.addLeistung(consVerrechenbar);
-			}
+				
+				@Override
+				public void lockAcquired(){
+					kons.addLeistung(art);
+					
+					// update kons. text
+					Samdas samdas = new Samdas(kons.getEintrag().getHead());
+					Record rec = samdas.getRecord();
+					String recText = rec.getText();
+					recText += "\nImpfung - " + art.getName();
+					rec.setText(recText);
+					kons.updateEintrag(samdas.toString(), true);
+					
+					boolean addedCons = true;
+					List<Verrechnet> leistungen = kons.getLeistungen();
+					for (Verrechnet verrechnet : leistungen) {
+						IVerrechenbar verrechenbar = verrechnet.getVerrechenbar();
+						if (verrechenbar != null
+							&& verrechenbar.getCodeSystemName().equals("Tarmed")
+							&& verrechenbar.getCode().equals(TARMED_5MIN_TARIF)) {
+							addedCons = false;
+							break;
+						}
+					}
+					if (addedCons && (consVerrechenbar != null)) {
+						kons.addLeistung(consVerrechenbar);
+					}
+				}
+			});
 			return kons;
 		}
 	}
