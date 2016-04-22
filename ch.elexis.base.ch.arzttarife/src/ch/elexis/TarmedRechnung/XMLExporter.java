@@ -328,6 +328,7 @@ public class XMLExporter implements IRnOutputter {
 		// services are needed for the balance
 		XMLExporterServices services = null;
 		List<Konsultation> lb = rn.getKonsultationen();
+		/*
 		for (Konsultation b : lb) {
 			List<Verrechnet> lv = b.getLeistungen();
 			if (lv.size() == 0) {
@@ -336,6 +337,8 @@ public class XMLExporter implements IRnOutputter {
 			
 			services = XMLExporterServices.buildServices(rn, vatSummer);
 		}
+		*/
+		services = XMLExporterServices.buildServices(rn, vatSummer);
 		
 		//balance is needed by other parts so initialize first
 		initBalanceData(rechnung, services, vatSummer);
