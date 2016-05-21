@@ -37,6 +37,8 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
@@ -224,7 +226,23 @@ public class KonsVerrechnung implements IJournalArea {
 		Transfer[] types = new Transfer[] {
 			textTransfer
 		};
+		verrechnungViewer.getControl().addKeyListener(new KeyListener() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if (e.keyCode == SWT.DEL) {
+					int j = verrechnungViewer.getTable().getSelectionIndex();
+					deleleSelectedItem();
+					// Allow pressing delete several times in a row
+					if (j >= 1) { // Correct by one, as we removed one item
+						verrechnungViewer.getTable().setFocus();
+						verrechnungViewer.getTable().select(j-1);
+					}
+				}
+			}
 
+			@Override
+			public void keyPressed(KeyEvent e){}
+		});
 		// assignmentComposite
 		DropTarget dtarget = new DropTarget(assignmentComposite, DND.DROP_COPY);
 		dtarget.setTransfer(types);
@@ -468,7 +486,7 @@ public class KonsVerrechnung implements IJournalArea {
 		return success;
 	}
 
-	public void updateKonsultation(boolean updateText, boolean putCaretToEnd){
+	public void updateKonsultation(boolean updateText){
 		if (actKons != null) {
 			hVerrechnung.setEnabled(true);
 			tVerrechnungKuerzel.setEnabled(true);
@@ -492,32 +510,32 @@ public class KonsVerrechnung implements IJournalArea {
 		}
 	}
 
+	/*
+	 * Return the index of the selected item. -1 if it could not be found
+	 */
+	private void deleleSelectedItem(){
+		IStructuredSelection sel = (IStructuredSelection) verrechnungViewer.getSelection();
+		if (sel != null) {
+			for (Object obj : sel.toArray()) {
+				if (obj instanceof Verrechnet) {
+					Verrechnet verrechnet = (Verrechnet) obj;
+					Result<Verrechnet> result = actKons.removeLeistung(verrechnet);
+					if (!result.isOK()) {
+						SWTHelper.alert("Leistungsposition kann nicht entfernt werden",
+							result.toString());
+					}
+					verrechnungViewer.refresh();
+					updateVerrechnungSum();
+				}
+			}
+		}
+	}
+
 	private void makeActions(){
 		delVerrechnetAction = new Action("Leistungsposition entfernen") {
 			@Override
 			public void run(){
-				IStructuredSelection sel = (IStructuredSelection) verrechnungViewer.getSelection();
-				if (sel != null) {
-					/*
-					 * if (SWTHelper.askYesNo("Leistungsposition entfernen", "Sind Sie sicher, dass
-					 * Sie die ausgewählten Leistungsposition entfernen wollen?") {
-					 */
-					for (Object obj : sel.toArray()) {
-						if (obj instanceof Verrechnet) {
-							Verrechnet verrechnet = (Verrechnet) obj;
-							Result result = actKons.removeLeistung(verrechnet);
-							if (!result.isOK()) {
-								SWTHelper.alert("Leistungsposition kann nicht entfernt werden",
-									result.toString());
-							}
-							verrechnungViewer.refresh();
-							updateVerrechnungSum();
-						}
-					}
-					/*
-					 * }
-					 */
-				}
+				deleleSelectedItem();
 			}
 		};
 		changeVerrechnetPreisAction = new Action("Preis ändern") {
@@ -529,9 +547,10 @@ public class KonsVerrechnung implements IJournalArea {
 					Verrechnet verrechnet = (Verrechnet) sel;
 					// String p=Rechnung.geldFormat.format(verrechnet.getEffPreisInRappen()/100.0);
 					String p = verrechnet.getEffPreis().getAmountAsString();
-					InputDialog dlg =
-						new InputDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Preis für Leistung ändern",
-							"Geben Sie bitte den neuen Preis für die Leistung ein (x.xx)", p, null);
+					InputDialog dlg = new InputDialog(
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+						"Preis für Leistung ändern",
+						"Geben Sie bitte den neuen Preis für die Leistung ein (x.xx)", p, null);
 					if (dlg.open() == Dialog.OK) {
 						Money newPrice;
 						try {
@@ -557,10 +576,11 @@ public class KonsVerrechnung implements IJournalArea {
 				if (sel != null) {
 					Verrechnet verrechnet = (Verrechnet) sel;
 					String p = Integer.toString(verrechnet.getZahl());
-					InputDialog dlg =
-						new InputDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Zahl der Leistung ändern",
-							"Geben Sie bitte die neue Anwendungszahl für die Leistung bzw. den Artikel ein",
-							p, null);
+					InputDialog dlg = new InputDialog(
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+						"Zahl der Leistung ändern",
+						"Geben Sie bitte die neue Anwendungszahl für die Leistung bzw. den Artikel ein",
+						p, null);
 					if (dlg.open() == Dialog.OK) {
 						int vorher = verrechnet.getZahl();
 						int neu = Integer.parseInt(dlg.getValue());
@@ -580,7 +600,8 @@ public class KonsVerrechnung implements IJournalArea {
 		};
 
 	}
-	private void logEvent(String msg) {
+
+	private void logEvent(String msg){
 		StringBuilder sb = new StringBuilder(msg + ": ");
 		if (actKons == null) {
 			sb.append("actKons null");
@@ -598,11 +619,13 @@ public class KonsVerrechnung implements IJournalArea {
 	}
 
 	@Override
-	public void setKons(Konsultation newKons, boolean putCaretToEnd){
-		actKons = newKons;
-		updateKonsultation(false, putCaretToEnd);
-		verrechnungViewer.refresh();
-		updateVerrechnungSum();
+	public void setKons(Konsultation newKons, KonsActions op){
+		if (KonsActions.ACTIVATE_KONS == op) {
+			actKons = newKons;
+			updateKonsultation(false);
+			verrechnungViewer.refresh();
+			updateVerrechnungSum();
+		}
 	}
 
 	@Override
