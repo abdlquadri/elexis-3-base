@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-P2=/var/www/vhosts/elexis.ch/httpdocs/ungrad/p2/elexis-base/${BUILD_NUMBER}
+WEBSPACE=/var/www/vhosts/elexis.ch/httpdocs/ungrad
+P2=${WEBSPACE}/p2/elexis-base
 
-mkdir $P2
+mkdir -p ${P2}/${BUILD_NUMBER}
 
-cp -R ch.elexis.base.p2site/target/repository/* $P2
+cp -R ch.elexis.base.p2site/target/repository/* ${P2}/${BUILD_NUMBER}
+
+rm ${P2}/latest
+ln -s ${BUILD_NUMBER} ${WEBSPACE}/p2/elexis-base/latest
