@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-WEBSPACE=/var/www/vhosts/elexis.ch/httpdocs/ungrad
 P2=${WEBSPACE}/p2/elexis-base
 
 mkdir -p ${P2}/${BUILD_NUMBER}
