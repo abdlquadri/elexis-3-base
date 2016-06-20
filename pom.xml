@@ -264,7 +264,8 @@
 <repositories>
   <repository>
     <id>elexis.3.core.${repo_variant}</id>
-    <url>http://download.elexis.info/elexis.3.core/${repo_variant}/</url>
+    <url>http://www.elexis.ch/ungrad/p2/elexis-core/latest</url>
+    <!-- url>http://download.elexis.info/elexis.3.core/${repo_variant}/</url -->
     <layout>p2</layout>
   </repository>
   <!--repository>
