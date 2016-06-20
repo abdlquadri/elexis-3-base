@@ -67,7 +67,7 @@
 	</profiles>
 <modules>
   <!-- our test modules. Come first to make them run as soon as possible -->
-  <module>at.medevit.atc_codes.test</module>
+  <!-- module>at.medevit.atc_codes.test</module>
   <module>at.medevit.elexis.ehc.core.test</module>
   <module>at.medevit.elexis.impfplan.test</module>
   <module>at.medevit.elexis.loinc_test</module>
@@ -82,7 +82,7 @@
   <module>net.medshare.connector.viollier_test</module>
   <module>org.iatrix.bestellung.rose_test</module>
   <module>ch.pharmed.phmprescriber_test</module>
-  <module>at.medevit.ch.artikelstamm.medcalendar.test</module>
+  <module>at.medevit.ch.artikelstamm.medcalendar.test</module -->
   <module>ch.gpb.elexis.cst</module>
   <module>ch.gpb.elexis.cst.feature</module>
   <module>at.gruber.elexis.mythic22</module>
@@ -268,12 +268,12 @@
     <!-- url>http://download.elexis.info/elexis.3.core/${repo_variant}/</url -->
     <layout>p2</layout>
   </repository>
-  <!--repository>
-<id>my_local_mirror</id>
-<url>file:///opt/mirror.4.elexis/target/repository/</url>
-<layout>p2</layout>
-</repository-->
   <repository>
+<id>my_local_mirror</id>
+<url>file:///Users/gerry/git/elexis-ungrad/ungrad-deps/target/repository/</url>
+<layout>p2</layout>
+</repository>
+  <!-- repository>
     <id>mirror.4.elexis.${repo_variant}</id>
     <url>http://download.elexis.info/mirror.4.elexis/${nonElexisP2variant}/</url>
     <layout>p2</layout>
@@ -282,7 +282,12 @@
     <id>elexis.3.3rdparty.libraries</id>
     <url>http://download.elexis.info/elexis.3.3rdparty.libraries/${nonElexisP2variant}</url>
     <layout>p2</layout>
-  </repository>
+  </repository -->
+  <!-- repository>
+    <id>elexis.ungrad.deps</id>
+    <url>http://www.elexis.ch/ungrad/p2/dependencies/latest/</url>
+    <layout>p2</layout>
+  </repository -->
 </repositories>
 <build>
   <plugins>
