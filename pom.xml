@@ -263,20 +263,20 @@
 </modules>
 <repositories>
   <repository>
-    <id>elexis.3.core.${repo_variant}</id>
+    <id>elexis-core</id>
     <url>http://www.elexis.ch/ungrad/p2/elexis-core/latest</url>
-    <!-- url>http://download.elexis.info/elexis.3.core/${repo_variant}/</url -->
     <layout>p2</layout>
   </repository>
   <repository>
-<id>my_local_mirror</id>
-<!-- url>file://../dependencies/repository/</url -->
-<url>http://localhost:3000</url>
+<id>base-dependencies</id>
+<!-- url>http://localhost:3000</url -->
+<url>http://www.elexis.ch/ungrad/p2/base-deps</url>
 <layout>p2</layout>
 </repository>
 <repository>
   <id>second.level.repo</id>
-  <url>file:///Volumes/zfslocal/dev/elexis-ungrad/ungrad-deps/target/repository</url>
+  <!-- url>file:///Volumes/zfslocal/dev/elexis-ungrad/ungrad-deps/target/repository</url -->
+  <url>http://www.elexis.ch/ungrad/p2/derived-deps</url>
   <layout>p2</layout>
 </repository>
 <repository>
