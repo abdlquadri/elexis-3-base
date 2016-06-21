@@ -232,12 +232,12 @@
   <module>com.jsigle.noatext_jsl.feature</module>
   <module>de.fhdo.elexis.perspective</module>
   <module>de.fhdo.elexis.perspective.feature</module>
-  <module>org.iatrix</module>
+  <!-- module>org.iatrix</module>
   <module>org.iatrix.feature</module>
   <module>org.iatrix.bestellung.rose</module>
   <module>org.iatrix.bestellung.rose.feature</module>
   <module>org.iatrix.messwerte</module>
-  <module>org.iatrix.messwerte.feature</module>
+  <module>org.iatrix.messwerte.feature</module -->
   <module>ch.elexis.base.p2site</module>
   <module>ch.unibe.iam.scg.archie</module>
   <module>ch.unibe.iam.scg.archie.feature</module>
@@ -270,8 +270,19 @@
   </repository>
   <repository>
 <id>my_local_mirror</id>
-<url>file:///Users/gerry/git/elexis-ungrad/ungrad-deps/target/repository/</url>
+<!-- url>file://../dependencies/repository/</url -->
+<url>http://localhost:3000</url>
 <layout>p2</layout>
+</repository>
+<repository>
+  <id>second.level.repo</id>
+  <url>file:///Volumes/zfslocal/dev/elexis-ungrad/ungrad-deps/target/repository</url>
+  <layout>p2</layout>
+</repository>
+<repository>
+  <id>eclipse.orbit</id>
+  <url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository</url>
+  <layout>p2</layout>
 </repository>
   <!-- repository>
     <id>mirror.4.elexis.${repo_variant}</id>
@@ -314,40 +325,6 @@
 			</executions>
 		</plugin>
 		<plugin>
-      <groupId>org.eclipse.tycho.extras</groupId>
-      <artifactId>tycho-source-feature-plugin</artifactId>
-      <version>${tycho-extras.version}</version>
-      <executions>
-        <execution>
-          <id>source-feature</id>
-          <phase>package</phase>
-          <goals>
-            <goal>source-feature</goal>
-          </goals>
-          <configuration>
-            <excludes>
-              <plugin id="bouncycastle.bcprov"/>
-              <plugin id="bouncycastle.bcprov-jdk14"/>
-              <plugin id="bcprov"/>
-              <plugin id="org.apache.xerces"/>
-              <plugin id="de.kupzog.ktable"/>
-              <plugin id="xerces.Impl"/>
-              <plugin id="xml-apis"/>
-              <plugin id="javax.xml"/>
-              <plugin id="org.apache.commons.logging"/>
-              <plugin id="org.apache.xml.resolver"/>
-              <plugin id="org.apache.xml.serializer"/>
-              <plugin id="jfree.chart"/>
-              <plugin id="jfree.chart-experimental"/>
-              <plugin id="jfree.chart-swt"/>
-              <plugin id="jfree.jcommon"/>
-              <plugin id="junit"/>
-            </excludes>
-          </configuration>
-        </execution>
-      </executions>
-    </plugin>
-    <plugin>
       <groupId>org.eclipse.tycho</groupId>
       <artifactId>tycho-p2-plugin</artifactId>
       <version>${tycho-version}</version>
@@ -399,18 +376,6 @@
           </environment>
         </environments>
       </configuration>
-    </plugin>
-    <plugin>
-      <groupId>org.eclipse.tycho</groupId>
-      <artifactId>tycho-source-plugin</artifactId>
-      <executions>
-        <execution>
-          <id>plugin-source</id>
-          <goals>
-            <goal>plugin-source</goal>
-          </goals>
-        </execution>
-      </executions>
     </plugin>
   </plugins>
   <pluginManagement>
@@ -497,14 +462,6 @@ Without it Maven would put two versions of each class file into the jars
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-surefire-plugin</artifactId>
         <version>${tycho-version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-        <version>${tycho-version}</version>
-        <configuration>
-          <strictSrcIncludes>false</strictSrcIncludes>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
