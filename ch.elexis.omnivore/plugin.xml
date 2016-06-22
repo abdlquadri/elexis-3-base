@@ -25,7 +25,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="ch.elexis.preferences.transporters"
+            category="ch.elexis.core.ui.category_docmgr"
             class="ch.elexis.omnivore.views.Preferences"
             id="ch.elexis.omnivore.Preferences"
             name="Omnivore">
