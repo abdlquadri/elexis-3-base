@@ -45,7 +45,7 @@ public class ArtikelstammImporterPage extends ImporterPage {
 	
 	@Override
 	public String getDescription(){
-		return "Importiere Artikelstamm";
+		return "Importiere Artikelstamm v4 Datei. Download von https://artikelstamm.elexis.info/v4/";
 	}
 	
 	@Override

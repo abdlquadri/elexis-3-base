@@ -75,7 +75,7 @@ public class ArtikelstammImporter {
 		
 		String msg = "Aktualisierung des Artikelstamms";
 		log.info(msg + " ");
-		monitor.beginTask(msg, 7);
+		monitor.beginTask(msg, 1000);
 		monitor.subTask("Einlesen der Aktualisierungsdaten");
 		ARTIKELSTAMM importStamm = null;
 		try {
@@ -88,16 +88,15 @@ public class ArtikelstammImporter {
 			log.info(msg);
 			return Status.CANCEL_STATUS;
 		}
-		monitor.worked(1);
+		monitor.worked(100);
 		
 		monitor.subTask("Lese Produkte und Limitationen...");
 		populateProducsAndLimitationsMap(importStamm);
-		monitor.worked(2);
-		
+		monitor.worked(300);
 		
 		int currentVersion = ArtikelstammItem.getCurrentVersion();
-		if(newVersion==null){
-			newVersion=currentVersion;
+		if (newVersion == null) {
+			newVersion = currentVersion;
 		}
 		if (newVersion < currentVersion) {
 			log.warn("Downgrade initiated v" + currentVersion + " -> v" + newVersion);
@@ -115,11 +114,11 @@ public class ArtikelstammImporter {
 		// delete all items of type importStammType not blackboxed
 		monitor.subTask("Lösche nicht Black-Box Artikel");
 		removeAllNonBlackboxedWithVersionLower(currentVersion, monitor);
-		monitor.worked(1);
+		monitor.worked(100);
 		// import the new dataset for type importStammType
 		monitor.subTask(
 			"Importiere Artikelstamm " + importStamm.getMONTH() + "/" + importStamm.getYEAR());
-			
+		
 		importNewItemsIntoDatabase(newVersion, importStamm, monitor);
 		
 		importProductsForExistingItemsIntoDatabase(newVersion, importStamm, monitor);
@@ -130,8 +129,8 @@ public class ArtikelstammImporter {
 		ArtikelstammItem.setCurrentVersion(newVersion);
 		ArtikelstammItem.setImportSetCreationDate(
 			importStamm.getCREATIONDATETIME().toGregorianCalendar().getTime());
-			
-		monitor.worked(1);
+		
+		monitor.worked(300);
 		long endTime = System.currentTimeMillis();
 		ElexisEventDispatcher.reload(ArtikelstammItem.class);
 		
@@ -168,7 +167,7 @@ public class ArtikelstammImporter {
 	 * being referenced by {@link Prescription}, ...
 	 * 
 	 * @param monitor
-	 * 			
+	 * 
 	 * @param importStammType
 	 */
 	private static void setBlackboxOnAllReferencedItems(IProgressMonitor monitor){
@@ -196,7 +195,8 @@ public class ArtikelstammImporter {
 		}
 		subMonitor.done();
 		
-		// black box all import ArtikelStammItem reference by a konsultations leistung
+		// black box all import ArtikelStammItem reference by a konsultations
+		// leistung
 		SubProgressMonitor subMonitor2 = new SubProgressMonitor(monitor, 1);
 		
 		Query<Verrechnet> queryVer = new Query<Verrechnet>(Verrechnet.class);
@@ -209,7 +209,7 @@ public class ArtikelstammImporter {
 			// should be ArtikelstammItem already?! NO?
 			if (vr.getVerrechenbar() != null && vr.getVerrechenbar().getCodeSystemName()
 				.equals(ArtikelstammConstants.CODESYSTEM_NAME)) {
-				// why do you  load again??? is not vr already ai??
+				// why do you load again??? is not vr already ai??
 				ArtikelstammItem ai = ArtikelstammItem.load(vr.getVerrechenbar().getId());
 				if (ai == null || ai.get(ArtikelstammItem.FLD_ITEM_TYPE) == null) {
 					log.error("Invalid ArtikestammItem or missing item type in " + ai);
@@ -251,7 +251,7 @@ public class ArtikelstammImporter {
 		qbe.add(ArtikelstammItem.FLD_BLACKBOXED, Query.EQUALS, StringConstants.ZERO);
 		qbe.add(ArtikelstammItem.FLD_CUMMULATED_VERSION, Query.LESS_OR_EQUAL,
 			currentStammVersion + "");
-			
+		
 		monitor.subTask("Suche nach zu entfernenden Artikeln ...");
 		List<ArtikelstammItem> qre = qbe.execute();
 		
@@ -262,7 +262,9 @@ public class ArtikelstammImporter {
 	}
 	
 	/**
-	 * Delete all products, collect all defined PRODNO entries and generate the resp. PRODUCT entry for it
+	 * Delete all products, collect all defined PRODNO entries and generate the resp. PRODUCT entry
+	 * for it
+	 * 
 	 * @param version
 	 * @param importStamm
 	 * @param monitor
@@ -279,7 +281,7 @@ public class ArtikelstammImporter {
 		try {
 			while (rs.next()) {
 				String prodNo = rs.getString(ArtikelstammItem.FLD_PRODNO);
-				if(prodNo!=null) {
+				if (prodNo != null) {
 					productList.add(prodNo);
 				}
 			}
@@ -287,14 +289,15 @@ public class ArtikelstammImporter {
 			log.error("Error executing distinct product selection", e);
 		}
 		PersistentObject.getConnection().releaseStatement(stm);
-		// for each defined PRODNO value generate the resp. product entry		
+		// for each defined PRODNO value generate the resp. product entry
 		productList.stream().forEachOrdered(s -> {
 			PRODUCT product = products.get(s);
-			if(product!=null) {
-				ArtikelstammItem productItem = new ArtikelstammItem(version, 'X', StringConstants.EMPTY,
-					new BigInteger(product.getPRODNO()), product.getDSCR(), StringConstants.EMPTY);
+			if (product != null) {
+				ArtikelstammItem productItem = new ArtikelstammItem(version, 'X',
+					StringConstants.EMPTY, new BigInteger(product.getPRODNO()), product.getDSCR(),
+					StringConstants.EMPTY);
 				String atc = product.getATC();
-				if(atc!=null) {
+				if (atc != null) {
 					productItem.setATCCode(atc);
 				}
 			} else {
@@ -315,8 +318,10 @@ public class ArtikelstammImporter {
 		for (ITEM item : importItemList) {
 			String itemUuid =
 				ArtikelstammHelper.createUUID(newVersion, item.getGTIN(), item.getPHAR(), false);
-			// Is the item to be imported already in the database? This should only happen
-			// if one re-imports an already imported dataset and the item was marked as black-box
+			// Is the item to be imported already in the database? This should
+			// only happen
+			// if one re-imports an already imported dataset and the item was
+			// marked as black-box
 			
 			Stm stm = PersistentObject.getConnection().getStatement();
 			int foundElements = stm.queryInt("SELECT COUNT(*) FROM " + ArtikelstammItem.TABLENAME
@@ -379,14 +384,15 @@ public class ArtikelstammImporter {
 					LIMITATION limitation = limitations.get(limnamebag);
 					
 					fields.add(ArtikelstammItem.FLD_LIMITATION);
+//					System.out.println(limnamebag);
 					values.add(limitation != null ? StringConstants.ONE : StringConstants.ZERO);
 					
 					if (limitation != null) {
-						if(limitation.getLIMITATIONPTS()!=null) {
+						if (limitation.getLIMITATIONPTS() != null) {
 							fields.add(ArtikelstammItem.FLD_LIMITATION_PTS);
 							values.add(limitation.getLIMITATIONPTS().toString());
 						}
-
+						
 						fields.add(ArtikelstammItem.FLD_LIMITATION_TEXT);
 						values.add(limitation.getDSCR());
 					}
@@ -442,7 +448,11 @@ public class ArtikelstammImporter {
 			fields.add(ArtikelstammItem.FLD_PKG_SIZE);
 			values.add(item.getPKGSIZE().toString());
 		}
-		
-		ai.set(fields.toArray(new String[0]), values.toArray(new String[0]));
+		try {
+			ai.set(fields.toArray(new String[0]), values.toArray(new String[0]));
+		} catch (Exception ex) {
+			log.error("Could not store Article " + item.getGTIN(), ex);
+			
+		}
 	}
 }

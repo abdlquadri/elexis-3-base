@@ -191,7 +191,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 	public String getLabel(){
 		String[] vals = get(true, FLD_DSCR, FLD_ADDDSCR);
 		
-		return (vals[1].length()>0) ? vals[0] + " (" + vals[1] + ")" : vals[0];
+		return (vals[1].length() > 0) ? vals[0] + " (" + vals[1] + ")" : vals[0];
 	}
 	
 	@Override
@@ -292,7 +292,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		try {
 			val = Integer.parseInt(get(FLD_PKG_SIZE));
 		} catch (NumberFormatException nfe) {
-		
+			
 		}
 		return val;
 	}
@@ -580,12 +580,12 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 	}
 	
 	public static boolean purgeEntries(List<ArtikelstammItem> list){
-		if(list.size()==0) {
+		if (list.size() == 0) {
 			return true;
 		}
 		String string = list.stream().map(o -> o.getWrappedId())
 			.reduce((u, t) -> u + StringConstants.COMMA + t).get();
-			
+		
 		Stm stm = getConnection().getStatement();
 		stm.exec("DELETE FROM " + TABLENAME + " WHERE ID IN (" + string + ")");
 		getConnection().releaseStatement(stm);
@@ -768,7 +768,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		String code = getATC_code();
 		if (code == null || code.length() < 1)
 			return Collections.emptyList();
-			
+		
 		Query<ArtikelstammItem> qre = new Query<ArtikelstammItem>(ArtikelstammItem.class);
 		qre.add(ArtikelstammItem.FLD_ATC, Query.EQUALS, code);
 		return qre.execute();
@@ -800,7 +800,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		List<ArtikelstammItem> result = qre.execute();
 		if (result.size() == 1)
 			return result.get(0);
-			
+		
 		if (!pharmaCode.startsWith(String.valueOf(0))) {
 			return ArtikelstammItem.findByPharmaCode(String.valueOf(0) + pharmaCode);
 		}

@@ -5,12 +5,12 @@
 // Generated on: 2016.05.18 at 08:12:01 AM CEST 
 //
 
-
 package at.medevit.ch.artikelstamm;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -20,11 +20,12 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -221,1777 +222,1620 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "products",
-    "limitations",
-    "items"
+	"products", "limitations", "items"
 })
 @XmlRootElement(name = "ARTIKELSTAMM")
 public class ARTIKELSTAMM {
-
-    @XmlElement(name = "PRODUCTS", required = true)
-    protected ARTIKELSTAMM.PRODUCTS products;
-    @XmlElement(name = "LIMITATIONS", required = true)
-    protected ARTIKELSTAMM.LIMITATIONS limitations;
-    @XmlElement(name = "ITEMS", required = true)
-    protected ARTIKELSTAMM.ITEMS items;
-    @XmlAttribute(name = "CREATION_DATETIME", required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar creationdatetime;
-    @XmlAttribute(name = "BUILD_DATETIME")
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar builddatetime;
-    @XmlAttribute(name = "LANG")
-    protected String lang;
-    @XmlAttribute(name = "MONTH", required = true)
-    protected int month;
-    @XmlAttribute(name = "YEAR", required = true)
-    protected int year;
-    @XmlAttribute(name = "VERSION_ID", required = true)
-    protected int versionid;
-    @XmlAttribute(name = "SET_TYPE", required = true)
-    protected String settype;
-    @XmlAttribute(name = "VID_APP_TO")
-    protected Integer vidappto;
-
-    /**
-     * Gets the value of the products property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ARTIKELSTAMM.PRODUCTS }
-     *     
-     */
-    public ARTIKELSTAMM.PRODUCTS getPRODUCTS() {
-        return products;
-    }
-
-    /**
-     * Sets the value of the products property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ARTIKELSTAMM.PRODUCTS }
-     *     
-     */
-    public void setPRODUCTS(ARTIKELSTAMM.PRODUCTS value) {
-        this.products = value;
-    }
-
-    /**
-     * Gets the value of the limitations property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ARTIKELSTAMM.LIMITATIONS }
-     *     
-     */
-    public ARTIKELSTAMM.LIMITATIONS getLIMITATIONS() {
-        return limitations;
-    }
-
-    /**
-     * Sets the value of the limitations property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ARTIKELSTAMM.LIMITATIONS }
-     *     
-     */
-    public void setLIMITATIONS(ARTIKELSTAMM.LIMITATIONS value) {
-        this.limitations = value;
-    }
-
-    /**
-     * Gets the value of the items property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ARTIKELSTAMM.ITEMS }
-     *     
-     */
-    public ARTIKELSTAMM.ITEMS getITEMS() {
-        return items;
-    }
-
-    /**
-     * Sets the value of the items property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ARTIKELSTAMM.ITEMS }
-     *     
-     */
-    public void setITEMS(ARTIKELSTAMM.ITEMS value) {
-        this.items = value;
-    }
-
-    /**
-     * Gets the value of the creationdatetime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getCREATIONDATETIME() {
-        return creationdatetime;
-    }
-
-    /**
-     * Sets the value of the creationdatetime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setCREATIONDATETIME(XMLGregorianCalendar value) {
-        this.creationdatetime = value;
-    }
-
-    /**
-     * Gets the value of the builddatetime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getBUILDDATETIME() {
-        return builddatetime;
-    }
-
-    /**
-     * Sets the value of the builddatetime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setBUILDDATETIME(XMLGregorianCalendar value) {
-        this.builddatetime = value;
-    }
-
-    /**
-     * Gets the value of the lang property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLANG() {
-        return lang;
-    }
-
-    /**
-     * Sets the value of the lang property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLANG(String value) {
-        this.lang = value;
-    }
-
-    /**
-     * Gets the value of the month property.
-     * 
-     */
-    public int getMONTH() {
-        return month;
-    }
-
-    /**
-     * Sets the value of the month property.
-     * 
-     */
-    public void setMONTH(int value) {
-        this.month = value;
-    }
-
-    /**
-     * Gets the value of the year property.
-     * 
-     */
-    public int getYEAR() {
-        return year;
-    }
-
-    /**
-     * Sets the value of the year property.
-     * 
-     */
-    public void setYEAR(int value) {
-        this.year = value;
-    }
-
-    /**
-     * Gets the value of the versionid property.
-     * 
-     */
-    public int getVERSIONID() {
-        return versionid;
-    }
-
-    /**
-     * Sets the value of the versionid property.
-     * 
-     */
-    public void setVERSIONID(int value) {
-        this.versionid = value;
-    }
-
-    /**
-     * Gets the value of the settype property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSETTYPE() {
-        return settype;
-    }
-
-    /**
-     * Sets the value of the settype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSETTYPE(String value) {
-        this.settype = value;
-    }
-
-    /**
-     * Gets the value of the vidappto property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getVIDAPPTO() {
-        return vidappto;
-    }
-
-    /**
-     * Sets the value of the vidappto property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setVIDAPPTO(Integer value) {
-        this.vidappto = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="ITEM" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="GTIN" minOccurs="0">
-     *                     &lt;simpleType>
-     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                       &lt;/restriction>
-     *                     &lt;/simpleType>
-     *                   &lt;/element>
-     *                   &lt;element name="PHAR" minOccurs="0">
-     *                     &lt;simpleType>
-     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}integer">
-     *                       &lt;/restriction>
-     *                     &lt;/simpleType>
-     *                   &lt;/element>
-     *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-     *                   &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *                   &lt;element name="COMP" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="NAME" minOccurs="0">
-     *                               &lt;simpleType>
-     *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                   &lt;maxLength value="101"/>
-     *                                 &lt;/restriction>
-     *                               &lt;/simpleType>
-     *                             &lt;/element>
-     *                             &lt;element name="GLN" minOccurs="0">
-     *                               &lt;simpleType>
-     *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                   &lt;maxLength value="13"/>
-     *                                 &lt;/restriction>
-     *                               &lt;/simpleType>
-     *                             &lt;/element>
-     *                           &lt;/sequence>
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                   &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *                   &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-     *                   &lt;element name="IKSCAT" minOccurs="0">
-     *                     &lt;simpleType>
-     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                         &lt;enumeration value="A"/>
-     *                         &lt;enumeration value="B"/>
-     *                         &lt;enumeration value="C"/>
-     *                         &lt;enumeration value="D"/>
-     *                         &lt;enumeration value="E"/>
-     *                       &lt;/restriction>
-     *                     &lt;/simpleType>
-     *                   &lt;/element>
-     *                   &lt;element name="GENERIC_TYPE" minOccurs="0">
-     *                     &lt;simpleType>
-     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                         &lt;enumeration value="O"/>
-     *                         &lt;enumeration value="G"/>
-     *                         &lt;enumeration value="K"/>
-     *                       &lt;/restriction>
-     *                     &lt;/simpleType>
-     *                   &lt;/element>
-     *                   &lt;element name="HAS_GENERIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-     *                   &lt;element name="LPPV" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-     *                   &lt;element name="DEDUCTIBLE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *                   &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-     *                   &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType" minOccurs="0"/>
-     *                   &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *                 &lt;attribute name="PHARMATYPE">
-     *                   &lt;simpleType>
-     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                       &lt;enumeration value="N"/>
-     *                       &lt;enumeration value="P"/>
-     *                     &lt;/restriction>
-     *                   &lt;/simpleType>
-     *                 &lt;/attribute>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "item"
-    })
-    public static class ITEMS {
-
-        @XmlElement(name = "ITEM")
-        protected List<ARTIKELSTAMM.ITEMS.ITEM> item;
-
-        /**
-         * Gets the value of the item property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the item property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getITEM().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ARTIKELSTAMM.ITEMS.ITEM }
-         * 
-         * 
-         */
-        public List<ARTIKELSTAMM.ITEMS.ITEM> getITEM() {
-            if (item == null) {
-                item = new ArrayList<ARTIKELSTAMM.ITEMS.ITEM>();
-            }
-            return this.item;
-        }
-
-
-        /**
-         * 
-         * 											Packungsgröße verrechnet,
-         * 											also Anzahl der
-         * 											beinhalteten
-         * 											Elemente (bspw. 100
-         * 											Tabletten)
-         * 										
-         * 
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="GTIN" minOccurs="0">
-         *           &lt;simpleType>
-         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *             &lt;/restriction>
-         *           &lt;/simpleType>
-         *         &lt;/element>
-         *         &lt;element name="PHAR" minOccurs="0">
-         *           &lt;simpleType>
-         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}integer">
-         *             &lt;/restriction>
-         *           &lt;/simpleType>
-         *         &lt;/element>
-         *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-         *         &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string"/>
-         *         &lt;element name="COMP" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="NAME" minOccurs="0">
-         *                     &lt;simpleType>
-         *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                         &lt;maxLength value="101"/>
-         *                       &lt;/restriction>
-         *                     &lt;/simpleType>
-         *                   &lt;/element>
-         *                   &lt;element name="GLN" minOccurs="0">
-         *                     &lt;simpleType>
-         *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                         &lt;maxLength value="13"/>
-         *                       &lt;/restriction>
-         *                     &lt;/simpleType>
-         *                   &lt;/element>
-         *                 &lt;/sequence>
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-         *         &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-         *         &lt;element name="IKSCAT" minOccurs="0">
-         *           &lt;simpleType>
-         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *               &lt;enumeration value="A"/>
-         *               &lt;enumeration value="B"/>
-         *               &lt;enumeration value="C"/>
-         *               &lt;enumeration value="D"/>
-         *               &lt;enumeration value="E"/>
-         *             &lt;/restriction>
-         *           &lt;/simpleType>
-         *         &lt;/element>
-         *         &lt;element name="GENERIC_TYPE" minOccurs="0">
-         *           &lt;simpleType>
-         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *               &lt;enumeration value="O"/>
-         *               &lt;enumeration value="G"/>
-         *               &lt;enumeration value="K"/>
-         *             &lt;/restriction>
-         *           &lt;/simpleType>
-         *         &lt;/element>
-         *         &lt;element name="HAS_GENERIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-         *         &lt;element name="LPPV" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-         *         &lt;element name="DEDUCTIBLE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-         *         &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-         *         &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType" minOccurs="0"/>
-         *         &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *       &lt;/sequence>
-         *       &lt;attribute name="PHARMATYPE">
-         *         &lt;simpleType>
-         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *             &lt;enumeration value="N"/>
-         *             &lt;enumeration value="P"/>
-         *           &lt;/restriction>
-         *         &lt;/simpleType>
-         *       &lt;/attribute>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "gtin",
-            "phar",
-            "dscr",
-            "dscrf",
-            "comp",
-            "pexf",
-            "ppub",
-            "pkgsize",
-            "pkgsizestring",
-            "slentry",
-            "ikscat",
-            "generictype",
-            "hasgeneric",
-            "lppv",
-            "deductible",
-            "narcotic",
-            "narcoticcas",
-            "prodno",
-            "measure"
-        })
-        public static class ITEM {
-
-            @XmlElement(name = "GTIN")
-            protected String gtin;
-            @XmlElement(name = "PHAR")
-            protected BigInteger phar;
-            @XmlElement(name = "DSCR", required = true)
-            protected String dscr;
-            @XmlElement(name = "DSCRF", required = true)
-            protected String dscrf;
-            @XmlElement(name = "COMP")
-            protected ARTIKELSTAMM.ITEMS.ITEM.COMP comp;
-            @XmlElement(name = "PEXF")
-            protected Double pexf;
-            @XmlElement(name = "PPUB")
-            protected Double ppub;
-            @XmlElement(name = "PKG_SIZE")
-            protected Integer pkgsize;
-            @XmlElement(name = "PKG_SIZE_STRING")
-            protected String pkgsizestring;
-            @XmlElement(name = "SL_ENTRY")
-            protected Boolean slentry;
-            @XmlElement(name = "IKSCAT")
-            protected String ikscat;
-            @XmlElement(name = "GENERIC_TYPE")
-            protected String generictype;
-            @XmlElement(name = "HAS_GENERIC")
-            protected Boolean hasgeneric;
-            @XmlElement(name = "LPPV")
-            protected Boolean lppv;
-            @XmlElement(name = "DEDUCTIBLE")
-            protected Integer deductible;
-            @XmlElement(name = "NARCOTIC")
-            protected Boolean narcotic;
-            @XmlElement(name = "NARCOTIC_CAS")
-            protected String narcoticcas;
-            @XmlElement(name = "PRODNO")
-            protected String prodno;
-            @XmlElement(name = "MEASURE")
-            protected String measure;
-            @XmlAttribute(name = "PHARMATYPE")
-            protected String pharmatype;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
-
-            /**
-             * Gets the value of the gtin property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getGTIN() {
-                return gtin;
-            }
-
-            /**
-             * Sets the value of the gtin property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setGTIN(String value) {
-                this.gtin = value;
-            }
-
-            /**
-             * Gets the value of the phar property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link BigInteger }
-             *     
-             */
-            public BigInteger getPHAR() {
-                return phar;
-            }
-
-            /**
-             * Sets the value of the phar property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link BigInteger }
-             *     
-             */
-            public void setPHAR(BigInteger value) {
-                this.phar = value;
-            }
-
-            /**
-             * Gets the value of the dscr property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCR() {
-                return dscr;
-            }
-
-            /**
-             * Sets the value of the dscr property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCR(String value) {
-                this.dscr = value;
-            }
-
-            /**
-             * Gets the value of the dscrf property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCRF() {
-                return dscrf;
-            }
-
-            /**
-             * Sets the value of the dscrf property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCRF(String value) {
-                this.dscrf = value;
-            }
-
-            /**
-             * Gets the value of the comp property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link ARTIKELSTAMM.ITEMS.ITEM.COMP }
-             *     
-             */
-            public ARTIKELSTAMM.ITEMS.ITEM.COMP getCOMP() {
-                return comp;
-            }
-
-            /**
-             * Sets the value of the comp property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link ARTIKELSTAMM.ITEMS.ITEM.COMP }
-             *     
-             */
-            public void setCOMP(ARTIKELSTAMM.ITEMS.ITEM.COMP value) {
-                this.comp = value;
-            }
-
-            /**
-             * Gets the value of the pexf property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Double }
-             *     
-             */
-            public Double getPEXF() {
-                return pexf;
-            }
-
-            /**
-             * Sets the value of the pexf property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Double }
-             *     
-             */
-            public void setPEXF(Double value) {
-                this.pexf = value;
-            }
-
-            /**
-             * Gets the value of the ppub property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Double }
-             *     
-             */
-            public Double getPPUB() {
-                return ppub;
-            }
-
-            /**
-             * Sets the value of the ppub property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Double }
-             *     
-             */
-            public void setPPUB(Double value) {
-                this.ppub = value;
-            }
-
-            /**
-             * Gets the value of the pkgsize property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Integer }
-             *     
-             */
-            public Integer getPKGSIZE() {
-                return pkgsize;
-            }
-
-            /**
-             * Sets the value of the pkgsize property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Integer }
-             *     
-             */
-            public void setPKGSIZE(Integer value) {
-                this.pkgsize = value;
-            }
-
-            /**
-             * Gets the value of the pkgsizestring property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getPKGSIZESTRING() {
-                return pkgsizestring;
-            }
-
-            /**
-             * Sets the value of the pkgsizestring property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setPKGSIZESTRING(String value) {
-                this.pkgsizestring = value;
-            }
-
-            /**
-             * Gets the value of the slentry property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Boolean }
-             *     
-             */
-            public Boolean isSLENTRY() {
-                return slentry;
-            }
-
-            /**
-             * Sets the value of the slentry property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Boolean }
-             *     
-             */
-            public void setSLENTRY(Boolean value) {
-                this.slentry = value;
-            }
-
-            /**
-             * Gets the value of the ikscat property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getIKSCAT() {
-                return ikscat;
-            }
-
-            /**
-             * Sets the value of the ikscat property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setIKSCAT(String value) {
-                this.ikscat = value;
-            }
-
-            /**
-             * Gets the value of the generictype property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getGENERICTYPE() {
-                return generictype;
-            }
-
-            /**
-             * Sets the value of the generictype property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setGENERICTYPE(String value) {
-                this.generictype = value;
-            }
-
-            /**
-             * Gets the value of the hasgeneric property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Boolean }
-             *     
-             */
-            public Boolean isHASGENERIC() {
-                return hasgeneric;
-            }
-
-            /**
-             * Sets the value of the hasgeneric property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Boolean }
-             *     
-             */
-            public void setHASGENERIC(Boolean value) {
-                this.hasgeneric = value;
-            }
-
-            /**
-             * Gets the value of the lppv property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Boolean }
-             *     
-             */
-            public Boolean isLPPV() {
-                return lppv;
-            }
-
-            /**
-             * Sets the value of the lppv property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Boolean }
-             *     
-             */
-            public void setLPPV(Boolean value) {
-                this.lppv = value;
-            }
-
-            /**
-             * Gets the value of the deductible property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Integer }
-             *     
-             */
-            public Integer getDEDUCTIBLE() {
-                return deductible;
-            }
-
-            /**
-             * Sets the value of the deductible property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Integer }
-             *     
-             */
-            public void setDEDUCTIBLE(Integer value) {
-                this.deductible = value;
-            }
-
-            /**
-             * Gets the value of the narcotic property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Boolean }
-             *     
-             */
-            public Boolean isNARCOTIC() {
-                return narcotic;
-            }
-
-            /**
-             * Sets the value of the narcotic property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Boolean }
-             *     
-             */
-            public void setNARCOTIC(Boolean value) {
-                this.narcotic = value;
-            }
-
-            /**
-             * Gets the value of the narcoticcas property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getNARCOTICCAS() {
-                return narcoticcas;
-            }
-
-            /**
-             * Sets the value of the narcoticcas property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setNARCOTICCAS(String value) {
-                this.narcoticcas = value;
-            }
-
-            /**
-             * Gets the value of the prodno property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getPRODNO() {
-                return prodno;
-            }
-
-            /**
-             * Sets the value of the prodno property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setPRODNO(String value) {
-                this.prodno = value;
-            }
-
-            /**
-             * Gets the value of the measure property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getMEASURE() {
-                return measure;
-            }
-
-            /**
-             * Sets the value of the measure property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setMEASURE(String value) {
-                this.measure = value;
-            }
-
-            /**
-             * Gets the value of the pharmatype property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getPHARMATYPE() {
-                return pharmatype;
-            }
-
-            /**
-             * Sets the value of the pharmatype property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setPHARMATYPE(String value) {
-                this.pharmatype = value;
-            }
-
-            /**
-             * Gets the value of the delta property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Sets the value of the delta property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
-            }
-
-
-            /**
-             * <p>Java class for anonymous complex type.
-             * 
-             * <p>The following schema fragment specifies the expected content contained within this class.
-             * 
-             * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="NAME" minOccurs="0">
-             *           &lt;simpleType>
-             *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *               &lt;maxLength value="101"/>
-             *             &lt;/restriction>
-             *           &lt;/simpleType>
-             *         &lt;/element>
-             *         &lt;element name="GLN" minOccurs="0">
-             *           &lt;simpleType>
-             *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *               &lt;maxLength value="13"/>
-             *             &lt;/restriction>
-             *           &lt;/simpleType>
-             *         &lt;/element>
-             *       &lt;/sequence>
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
-             * </pre>
-             * 
-             * 
-             */
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "", propOrder = {
-                "name",
-                "gln"
-            })
-            public static class COMP {
-
-                @XmlElement(name = "NAME")
-                protected String name;
-                @XmlElement(name = "GLN")
-                protected String gln;
-
-                /**
-                 * Gets the value of the name property.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getNAME() {
-                    return name;
-                }
-
-                /**
-                 * Sets the value of the name property.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setNAME(String value) {
-                    this.name = value;
-                }
-
-                /**
-                 * Gets the value of the gln property.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getGLN() {
-                    return gln;
-                }
-
-                /**
-                 * Sets the value of the gln property.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setGLN(String value) {
-                    this.gln = value;
-                }
-
-            }
-
-        }
-
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="LIMITATION" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-     *                   &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-     *                   &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "limitation"
-    })
-    public static class LIMITATIONS {
-
-        @XmlElement(name = "LIMITATION")
-        protected List<ARTIKELSTAMM.LIMITATIONS.LIMITATION> limitation;
-
-        /**
-         * Gets the value of the limitation property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the limitation property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getLIMITATION().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ARTIKELSTAMM.LIMITATIONS.LIMITATION }
-         * 
-         * 
-         */
-        public List<ARTIKELSTAMM.LIMITATIONS.LIMITATION> getLIMITATION() {
-            if (limitation == null) {
-                limitation = new ArrayList<ARTIKELSTAMM.LIMITATIONS.LIMITATION>();
-            }
-            return this.limitation;
-        }
-
-
-        /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string"/>
-         *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-         *         &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-         *         &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-         *       &lt;/sequence>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "limnamebag",
-            "dscr",
-            "dscrf",
-            "limitationpts"
-        })
-        public static class LIMITATION {
-
-            @XmlElement(name = "LIMNAMEBAG", required = true)
-            protected String limnamebag;
-            @XmlElement(name = "DSCR", required = true)
-            protected String dscr;
-            @XmlElement(name = "DSCRF", required = true)
-            protected String dscrf;
-            @XmlElement(name = "LIMITATION_PTS")
-            protected Integer limitationpts;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
-
-            /**
-             * Gets the value of the limnamebag property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getLIMNAMEBAG() {
-                return limnamebag;
-            }
-
-            /**
-             * Sets the value of the limnamebag property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setLIMNAMEBAG(String value) {
-                this.limnamebag = value;
-            }
-
-            /**
-             * Gets the value of the dscr property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCR() {
-                return dscr;
-            }
-
-            /**
-             * Sets the value of the dscr property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCR(String value) {
-                this.dscr = value;
-            }
-
-            /**
-             * Gets the value of the dscrf property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCRF() {
-                return dscrf;
-            }
-
-            /**
-             * Sets the value of the dscrf property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCRF(String value) {
-                this.dscrf = value;
-            }
-
-            /**
-             * Gets the value of the limitationpts property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Integer }
-             *     
-             */
-            public Integer getLIMITATIONPTS() {
-                return limitationpts;
-            }
-
-            /**
-             * Sets the value of the limitationpts property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Integer }
-             *     
-             */
-            public void setLIMITATIONPTS(Integer value) {
-                this.limitationpts = value;
-            }
-
-            /**
-             * Gets the value of the delta property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Sets the value of the delta property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
-            }
-
-        }
-
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="PRODUCT" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType"/>
-     *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-     *                   &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-     *                   &lt;element name="ATC" minOccurs="0">
-     *                     &lt;simpleType>
-     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                         &lt;maxLength value="8"/>
-     *                       &lt;/restriction>
-     *                     &lt;/simpleType>
-     *                   &lt;/element>
-     *                   &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "product"
-    })
-    public static class PRODUCTS {
-
-        @XmlElement(name = "PRODUCT")
-        protected List<ARTIKELSTAMM.PRODUCTS.PRODUCT> product;
-
-        /**
-         * Gets the value of the product property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the product property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getPRODUCT().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ARTIKELSTAMM.PRODUCTS.PRODUCT }
-         * 
-         * 
-         */
-        public List<ARTIKELSTAMM.PRODUCTS.PRODUCT> getPRODUCT() {
-            if (product == null) {
-                product = new ArrayList<ARTIKELSTAMM.PRODUCTS.PRODUCT>();
-            }
-            return this.product;
-        }
-
-
-        /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType"/>
-         *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-         *         &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
-         *         &lt;element name="ATC" minOccurs="0">
-         *           &lt;simpleType>
-         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *               &lt;maxLength value="8"/>
-         *             &lt;/restriction>
-         *           &lt;/simpleType>
-         *         &lt;/element>
-         *         &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *       &lt;/sequence>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "prodno",
-            "dscr",
-            "dscrf",
-            "atc",
-            "limnamebag",
-            "substance",
-            "substancef"
-        })
-        public static class PRODUCT {
-
-            @XmlElement(name = "PRODNO", required = true)
-            protected String prodno;
-            @XmlElement(name = "DSCR", required = true)
-            protected String dscr;
-            @XmlElement(name = "DSCRF", required = true)
-            protected String dscrf;
-            @XmlElement(name = "ATC")
-            protected String atc;
-            @XmlElement(name = "LIMNAMEBAG")
-            protected String limnamebag;
-            @XmlElement(name = "SUBSTANCE")
-            protected String substance;
-            @XmlElement(name = "SUBSTANCEF")
-            protected String substancef;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
-
-            /**
-             * Gets the value of the prodno property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getPRODNO() {
-                return prodno;
-            }
-
-            /**
-             * Sets the value of the prodno property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setPRODNO(String value) {
-                this.prodno = value;
-            }
-
-            /**
-             * Gets the value of the dscr property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCR() {
-                return dscr;
-            }
-
-            /**
-             * Sets the value of the dscr property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCR(String value) {
-                this.dscr = value;
-            }
-
-            /**
-             * Gets the value of the dscrf property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getDSCRF() {
-                return dscrf;
-            }
-
-            /**
-             * Sets the value of the dscrf property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setDSCRF(String value) {
-                this.dscrf = value;
-            }
-
-            /**
-             * Gets the value of the atc property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getATC() {
-                return atc;
-            }
-
-            /**
-             * Sets the value of the atc property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setATC(String value) {
-                this.atc = value;
-            }
-
-            /**
-             * Gets the value of the limnamebag property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getLIMNAMEBAG() {
-                return limnamebag;
-            }
-
-            /**
-             * Sets the value of the limnamebag property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setLIMNAMEBAG(String value) {
-                this.limnamebag = value;
-            }
-
-            /**
-             * Gets the value of the substance property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getSUBSTANCE() {
-                return substance;
-            }
-
-            /**
-             * Sets the value of the substance property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setSUBSTANCE(String value) {
-                this.substance = value;
-            }
-
-            /**
-             * Gets the value of the substancef property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getSUBSTANCEF() {
-                return substancef;
-            }
-
-            /**
-             * Sets the value of the substancef property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setSUBSTANCEF(String value) {
-                this.substancef = value;
-            }
-
-            /**
-             * Gets the value of the delta property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Sets the value of the delta property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
-            }
-
-        }
-
-    }
-
+	
+	@XmlElement(name = "PRODUCTS", required = true)
+	protected ARTIKELSTAMM.PRODUCTS products;
+	@XmlElement(name = "LIMITATIONS", required = true)
+	protected ARTIKELSTAMM.LIMITATIONS limitations;
+	@XmlElement(name = "ITEMS", required = true)
+	protected ARTIKELSTAMM.ITEMS items;
+	@XmlAttribute(name = "CREATION_DATETIME", required = true)
+	@XmlSchemaType(name = "dateTime")
+	protected XMLGregorianCalendar creationdatetime;
+	@XmlAttribute(name = "BUILD_DATETIME")
+	@XmlSchemaType(name = "dateTime")
+	protected XMLGregorianCalendar builddatetime;
+	@XmlAttribute(name = "LANG")
+	protected String lang;
+	@XmlAttribute(name = "MONTH", required = true)
+	protected int month;
+	@XmlAttribute(name = "YEAR", required = true)
+	protected int year;
+	@XmlAttribute(name = "VERSION_ID", required = true)
+	protected int versionid;
+	@XmlAttribute(name = "SET_TYPE", required = true)
+	protected String settype;
+	@XmlAttribute(name = "VID_APP_TO")
+	protected Integer vidappto;
+	
+	/**
+	 * Gets the value of the products property.
+	 * 
+	 * @return possible object is {@link ARTIKELSTAMM.PRODUCTS }
+	 * 
+	 */
+	public ARTIKELSTAMM.PRODUCTS getPRODUCTS(){
+		return products;
+	}
+	
+	/**
+	 * Sets the value of the products property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link ARTIKELSTAMM.PRODUCTS }
+	 * 
+	 */
+	public void setPRODUCTS(ARTIKELSTAMM.PRODUCTS value){
+		this.products = value;
+	}
+	
+	/**
+	 * Gets the value of the limitations property.
+	 * 
+	 * @return possible object is {@link ARTIKELSTAMM.LIMITATIONS }
+	 * 
+	 */
+	public ARTIKELSTAMM.LIMITATIONS getLIMITATIONS(){
+		return limitations;
+	}
+	
+	/**
+	 * Sets the value of the limitations property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link ARTIKELSTAMM.LIMITATIONS }
+	 * 
+	 */
+	public void setLIMITATIONS(ARTIKELSTAMM.LIMITATIONS value){
+		this.limitations = value;
+	}
+	
+	/**
+	 * Gets the value of the items property.
+	 * 
+	 * @return possible object is {@link ARTIKELSTAMM.ITEMS }
+	 * 
+	 */
+	public ARTIKELSTAMM.ITEMS getITEMS(){
+		return items;
+	}
+	
+	/**
+	 * Sets the value of the items property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link ARTIKELSTAMM.ITEMS }
+	 * 
+	 */
+	public void setITEMS(ARTIKELSTAMM.ITEMS value){
+		this.items = value;
+	}
+	
+	/**
+	 * Gets the value of the creationdatetime property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getCREATIONDATETIME(){
+		return creationdatetime;
+	}
+	
+	/**
+	 * Sets the value of the creationdatetime property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setCREATIONDATETIME(XMLGregorianCalendar value){
+		this.creationdatetime = value;
+	}
+	
+	/**
+	 * Gets the value of the builddatetime property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getBUILDDATETIME(){
+		return builddatetime;
+	}
+	
+	/**
+	 * Sets the value of the builddatetime property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setBUILDDATETIME(XMLGregorianCalendar value){
+		this.builddatetime = value;
+	}
+	
+	/**
+	 * Gets the value of the lang property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getLANG(){
+		return lang;
+	}
+	
+	/**
+	 * Sets the value of the lang property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setLANG(String value){
+		this.lang = value;
+	}
+	
+	/**
+	 * Gets the value of the month property.
+	 * 
+	 */
+	public int getMONTH(){
+		return month;
+	}
+	
+	/**
+	 * Sets the value of the month property.
+	 * 
+	 */
+	public void setMONTH(int value){
+		this.month = value;
+	}
+	
+	/**
+	 * Gets the value of the year property.
+	 * 
+	 */
+	public int getYEAR(){
+		return year;
+	}
+	
+	/**
+	 * Sets the value of the year property.
+	 * 
+	 */
+	public void setYEAR(int value){
+		this.year = value;
+	}
+	
+	/**
+	 * Gets the value of the versionid property.
+	 * 
+	 */
+	public int getVERSIONID(){
+		return versionid;
+	}
+	
+	/**
+	 * Sets the value of the versionid property.
+	 * 
+	 */
+	public void setVERSIONID(int value){
+		this.versionid = value;
+	}
+	
+	/**
+	 * Gets the value of the settype property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSETTYPE(){
+		return settype;
+	}
+	
+	/**
+	 * Sets the value of the settype property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setSETTYPE(String value){
+		this.settype = value;
+	}
+	
+	/**
+	 * Gets the value of the vidappto property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getVIDAPPTO(){
+		return vidappto;
+	}
+	
+	/**
+	 * Sets the value of the vidappto property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setVIDAPPTO(Integer value){
+		this.vidappto = value;
+	}
+	
+	/**
+	 * <p>
+	 * Java class for anonymous complex type.
+	 * 
+	 * <p>
+	 * The following schema fragment specifies the expected content contained within this class.
+	 * 
+	 * <pre>
+	 * &lt;complexType>
+	 *   &lt;complexContent>
+	 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *       &lt;sequence>
+	 *         &lt;element name="ITEM" maxOccurs="unbounded" minOccurs="0">
+	 *           &lt;complexType>
+	 *             &lt;complexContent>
+	 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *                 &lt;sequence>
+	 *                   &lt;element name="GTIN" minOccurs="0">
+	 *                     &lt;simpleType>
+	 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                       &lt;/restriction>
+	 *                     &lt;/simpleType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="PHAR" minOccurs="0">
+	 *                     &lt;simpleType>
+	 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}integer">
+	 *                       &lt;/restriction>
+	 *                     &lt;/simpleType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+	 *                   &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string"/>
+	 *                   &lt;element name="COMP" minOccurs="0">
+	 *                     &lt;complexType>
+	 *                       &lt;complexContent>
+	 *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *                           &lt;sequence>
+	 *                             &lt;element name="NAME" minOccurs="0">
+	 *                               &lt;simpleType>
+	 *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                                   &lt;maxLength value="101"/>
+	 *                                 &lt;/restriction>
+	 *                               &lt;/simpleType>
+	 *                             &lt;/element>
+	 *                             &lt;element name="GLN" minOccurs="0">
+	 *                               &lt;simpleType>
+	 *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                                   &lt;maxLength value="13"/>
+	 *                                 &lt;/restriction>
+	 *                               &lt;/simpleType>
+	 *                             &lt;/element>
+	 *                           &lt;/sequence>
+	 *                         &lt;/restriction>
+	 *                       &lt;/complexContent>
+	 *                     &lt;/complexType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+	 *                   &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+	 *                   &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+	 *                   &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                   &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+	 *                   &lt;element name="IKSCAT" minOccurs="0">
+	 *                     &lt;simpleType>
+	 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                         &lt;enumeration value="A"/>
+	 *                         &lt;enumeration value="B"/>
+	 *                         &lt;enumeration value="C"/>
+	 *                         &lt;enumeration value="D"/>
+	 *                         &lt;enumeration value="E"/>
+	 *                       &lt;/restriction>
+	 *                     &lt;/simpleType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="GENERIC_TYPE" minOccurs="0">
+	 *                     &lt;simpleType>
+	 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                         &lt;enumeration value="O"/>
+	 *                         &lt;enumeration value="G"/>
+	 *                         &lt;enumeration value="K"/>
+	 *                       &lt;/restriction>
+	 *                     &lt;/simpleType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="HAS_GENERIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+	 *                   &lt;element name="LPPV" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+	 *                   &lt;element name="DEDUCTIBLE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+	 *                   &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+	 *                   &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType" minOccurs="0"/>
+	 *                   &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                 &lt;/sequence>
+	 *                 &lt;attribute name="PHARMATYPE">
+	 *                   &lt;simpleType>
+	 *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                       &lt;enumeration value="N"/>
+	 *                       &lt;enumeration value="P"/>
+	 *                     &lt;/restriction>
+	 *                   &lt;/simpleType>
+	 *                 &lt;/attribute>
+	 *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+	 *               &lt;/restriction>
+	 *             &lt;/complexContent>
+	 *           &lt;/complexType>
+	 *         &lt;/element>
+	 *       &lt;/sequence>
+	 *     &lt;/restriction>
+	 *   &lt;/complexContent>
+	 * &lt;/complexType>
+	 * </pre>
+	 * 
+	 * 
+	 */
+	@XmlAccessorType(XmlAccessType.FIELD)
+	@XmlType(name = "", propOrder = {
+		"item"
+	})
+	public static class ITEMS {
+		
+		@XmlElement(name = "ITEM")
+		protected List<ARTIKELSTAMM.ITEMS.ITEM> item;
+		
+		/**
+		 * Gets the value of the item property.
+		 * 
+		 * <p>
+		 * This accessor method returns a reference to the live list, not a snapshot. Therefore any
+		 * modification you make to the returned list will be present inside the JAXB object. This
+		 * is why there is not a <CODE>set</CODE> method for the item property.
+		 * 
+		 * <p>
+		 * For example, to add a new item, do as follows:
+		 * 
+		 * <pre>
+		 * getITEM().add(newItem);
+		 * </pre>
+		 * 
+		 * 
+		 * <p>
+		 * Objects of the following type(s) are allowed in the list {@link ARTIKELSTAMM.ITEMS.ITEM }
+		 * 
+		 * 
+		 */
+		public List<ARTIKELSTAMM.ITEMS.ITEM> getITEM(){
+			if (item == null) {
+				item = new ArrayList<ARTIKELSTAMM.ITEMS.ITEM>();
+			}
+			return this.item;
+		}
+		
+		/**
+		 * 
+		 * Packungsgröße verrechnet, also Anzahl der beinhalteten Elemente (bspw. 100 Tabletten)
+		 * 
+		 * 
+		 * <p>
+		 * Java class for anonymous complex type.
+		 * 
+		 * <p>
+		 * The following schema fragment specifies the expected content contained within this class.
+		 * 
+		 * <pre>
+		 * &lt;complexType>
+		 *   &lt;complexContent>
+		 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+		 *       &lt;sequence>
+		 *         &lt;element name="GTIN" minOccurs="0">
+		 *           &lt;simpleType>
+		 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *             &lt;/restriction>
+		 *           &lt;/simpleType>
+		 *         &lt;/element>
+		 *         &lt;element name="PHAR" minOccurs="0">
+		 *           &lt;simpleType>
+		 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}integer">
+		 *             &lt;/restriction>
+		 *           &lt;/simpleType>
+		 *         &lt;/element>
+		 *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+		 *         &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string"/>
+		 *         &lt;element name="COMP" minOccurs="0">
+		 *           &lt;complexType>
+		 *             &lt;complexContent>
+		 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+		 *                 &lt;sequence>
+		 *                   &lt;element name="NAME" minOccurs="0">
+		 *                     &lt;simpleType>
+		 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *                         &lt;maxLength value="101"/>
+		 *                       &lt;/restriction>
+		 *                     &lt;/simpleType>
+		 *                   &lt;/element>
+		 *                   &lt;element name="GLN" minOccurs="0">
+		 *                     &lt;simpleType>
+		 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *                         &lt;maxLength value="13"/>
+		 *                       &lt;/restriction>
+		 *                     &lt;/simpleType>
+		 *                   &lt;/element>
+		 *                 &lt;/sequence>
+		 *               &lt;/restriction>
+		 *             &lt;/complexContent>
+		 *           &lt;/complexType>
+		 *         &lt;/element>
+		 *         &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+		 *         &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+		 *         &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+		 *         &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *         &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+		 *         &lt;element name="IKSCAT" minOccurs="0">
+		 *           &lt;simpleType>
+		 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *               &lt;enumeration value="A"/>
+		 *               &lt;enumeration value="B"/>
+		 *               &lt;enumeration value="C"/>
+		 *               &lt;enumeration value="D"/>
+		 *               &lt;enumeration value="E"/>
+		 *             &lt;/restriction>
+		 *           &lt;/simpleType>
+		 *         &lt;/element>
+		 *         &lt;element name="GENERIC_TYPE" minOccurs="0">
+		 *           &lt;simpleType>
+		 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *               &lt;enumeration value="O"/>
+		 *               &lt;enumeration value="G"/>
+		 *               &lt;enumeration value="K"/>
+		 *             &lt;/restriction>
+		 *           &lt;/simpleType>
+		 *         &lt;/element>
+		 *         &lt;element name="HAS_GENERIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+		 *         &lt;element name="LPPV" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+		 *         &lt;element name="DEDUCTIBLE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+		 *         &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+		 *         &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType" minOccurs="0"/>
+		 *         &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *       &lt;/sequence>
+		 *       &lt;attribute name="PHARMATYPE">
+		 *         &lt;simpleType>
+		 *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *             &lt;enumeration value="N"/>
+		 *             &lt;enumeration value="P"/>
+		 *           &lt;/restriction>
+		 *         &lt;/simpleType>
+		 *       &lt;/attribute>
+		 *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+		 *     &lt;/restriction>
+		 *   &lt;/complexContent>
+		 * &lt;/complexType>
+		 * </pre>
+		 * 
+		 * 
+		 */
+		@XmlAccessorType(XmlAccessType.FIELD)
+		@XmlType(name = "", propOrder = {
+			"gtin", "phar", "dscr", "dscrf", "comp", "pexf", "ppub", "pkgsize", "pkgsizestring",
+			"slentry", "ikscat", "generictype", "hasgeneric", "lppv", "deductible", "narcotic",
+			"narcoticcas", "prodno", "measure"
+		})
+		public static class ITEM {
+			
+			@XmlElement(name = "GTIN")
+			protected String gtin;
+			@XmlElement(name = "PHAR")
+			protected BigInteger phar;
+			@XmlElement(name = "DSCR", required = true)
+			protected String dscr;
+			@XmlElement(name = "DSCRF", required = true)
+			protected String dscrf;
+			@XmlElement(name = "COMP")
+			protected ARTIKELSTAMM.ITEMS.ITEM.COMP comp;
+			@XmlElement(name = "PEXF")
+			protected Double pexf;
+			@XmlElement(name = "PPUB")
+			protected Double ppub;
+			@XmlElement(name = "PKG_SIZE")
+			protected Integer pkgsize;
+			@XmlElement(name = "PKG_SIZE_STRING")
+			protected String pkgsizestring;
+			@XmlElement(name = "SL_ENTRY")
+			protected Boolean slentry;
+			@XmlElement(name = "IKSCAT")
+			protected String ikscat;
+			@XmlElement(name = "GENERIC_TYPE")
+			protected String generictype;
+			@XmlElement(name = "HAS_GENERIC")
+			protected Boolean hasgeneric;
+			@XmlElement(name = "LPPV")
+			protected Boolean lppv;
+			@XmlElement(name = "DEDUCTIBLE")
+			protected Integer deductible;
+			@XmlElement(name = "NARCOTIC")
+			protected Boolean narcotic;
+			@XmlElement(name = "NARCOTIC_CAS")
+			protected String narcoticcas;
+			@XmlElement(name = "PRODNO")
+			protected String prodno;
+			@XmlElement(name = "MEASURE")
+			protected String measure;
+			@XmlAttribute(name = "PHARMATYPE")
+			protected String pharmatype;
+			@XmlAttribute(name = "DELTA")
+			protected DELTAType delta;
+			
+			/**
+			 * Gets the value of the gtin property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getGTIN(){
+				return gtin;
+			}
+			
+			/**
+			 * Sets the value of the gtin property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setGTIN(String value){
+				this.gtin = value;
+			}
+			
+			/**
+			 * Gets the value of the phar property.
+			 * 
+			 * @return possible object is {@link BigInteger }
+			 * 
+			 */
+			public BigInteger getPHAR(){
+				return phar;
+			}
+			
+			/**
+			 * Sets the value of the phar property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link BigInteger }
+			 * 
+			 */
+			public void setPHAR(BigInteger value){
+				this.phar = value;
+			}
+			
+			/**
+			 * Gets the value of the dscr property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCR(){
+				return dscr;
+			}
+			
+			/**
+			 * Sets the value of the dscr property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCR(String value){
+				this.dscr = value;
+			}
+			
+			/**
+			 * Gets the value of the dscrf property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCRF(){
+				return dscrf;
+			}
+			
+			/**
+			 * Sets the value of the dscrf property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCRF(String value){
+				this.dscrf = value;
+			}
+			
+			/**
+			 * Gets the value of the comp property.
+			 * 
+			 * @return possible object is {@link ARTIKELSTAMM.ITEMS.ITEM.COMP }
+			 * 
+			 */
+			public ARTIKELSTAMM.ITEMS.ITEM.COMP getCOMP(){
+				return comp;
+			}
+			
+			/**
+			 * Sets the value of the comp property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link ARTIKELSTAMM.ITEMS.ITEM.COMP }
+			 * 
+			 */
+			public void setCOMP(ARTIKELSTAMM.ITEMS.ITEM.COMP value){
+				this.comp = value;
+			}
+			
+			/**
+			 * Gets the value of the pexf property.
+			 * 
+			 * @return possible object is {@link Double }
+			 * 
+			 */
+			public Double getPEXF(){
+				return pexf;
+			}
+			
+			/**
+			 * Sets the value of the pexf property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Double }
+			 * 
+			 */
+			public void setPEXF(Double value){
+				this.pexf = value;
+			}
+			
+			/**
+			 * Gets the value of the ppub property.
+			 * 
+			 * @return possible object is {@link Double }
+			 * 
+			 */
+			public Double getPPUB(){
+				return ppub;
+			}
+			
+			/**
+			 * Sets the value of the ppub property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Double }
+			 * 
+			 */
+			public void setPPUB(Double value){
+				this.ppub = value;
+			}
+			
+			/**
+			 * Gets the value of the pkgsize property.
+			 * 
+			 * @return possible object is {@link Integer }
+			 * 
+			 */
+			public Integer getPKGSIZE(){
+				return pkgsize;
+			}
+			
+			/**
+			 * Sets the value of the pkgsize property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Integer }
+			 * 
+			 */
+			public void setPKGSIZE(Integer value){
+				this.pkgsize = value;
+			}
+			
+			/**
+			 * Gets the value of the pkgsizestring property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getPKGSIZESTRING(){
+				return pkgsizestring;
+			}
+			
+			/**
+			 * Sets the value of the pkgsizestring property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setPKGSIZESTRING(String value){
+				this.pkgsizestring = value;
+			}
+			
+			/**
+			 * Gets the value of the slentry property.
+			 * 
+			 * @return possible object is {@link Boolean }
+			 * 
+			 */
+			public Boolean isSLENTRY(){
+				return slentry;
+			}
+			
+			/**
+			 * Sets the value of the slentry property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Boolean }
+			 * 
+			 */
+			public void setSLENTRY(Boolean value){
+				this.slentry = value;
+			}
+			
+			/**
+			 * Gets the value of the ikscat property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getIKSCAT(){
+				return ikscat;
+			}
+			
+			/**
+			 * Sets the value of the ikscat property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setIKSCAT(String value){
+				this.ikscat = value;
+			}
+			
+			/**
+			 * Gets the value of the generictype property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getGENERICTYPE(){
+				return generictype;
+			}
+			
+			/**
+			 * Sets the value of the generictype property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setGENERICTYPE(String value){
+				this.generictype = value;
+			}
+			
+			/**
+			 * Gets the value of the hasgeneric property.
+			 * 
+			 * @return possible object is {@link Boolean }
+			 * 
+			 */
+			public Boolean isHASGENERIC(){
+				return hasgeneric;
+			}
+			
+			/**
+			 * Sets the value of the hasgeneric property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Boolean }
+			 * 
+			 */
+			public void setHASGENERIC(Boolean value){
+				this.hasgeneric = value;
+			}
+			
+			/**
+			 * Gets the value of the lppv property.
+			 * 
+			 * @return possible object is {@link Boolean }
+			 * 
+			 */
+			public Boolean isLPPV(){
+				return lppv;
+			}
+			
+			/**
+			 * Sets the value of the lppv property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Boolean }
+			 * 
+			 */
+			public void setLPPV(Boolean value){
+				this.lppv = value;
+			}
+			
+			/**
+			 * Gets the value of the deductible property.
+			 * 
+			 * @return possible object is {@link Integer }
+			 * 
+			 */
+			public Integer getDEDUCTIBLE(){
+				return deductible;
+			}
+			
+			/**
+			 * Sets the value of the deductible property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Integer }
+			 * 
+			 */
+			public void setDEDUCTIBLE(Integer value){
+				this.deductible = value;
+			}
+			
+			/**
+			 * Gets the value of the narcotic property.
+			 * 
+			 * @return possible object is {@link Boolean }
+			 * 
+			 */
+			public Boolean isNARCOTIC(){
+				return narcotic;
+			}
+			
+			/**
+			 * Sets the value of the narcotic property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Boolean }
+			 * 
+			 */
+			public void setNARCOTIC(Boolean value){
+				this.narcotic = value;
+			}
+			
+			/**
+			 * Gets the value of the narcoticcas property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getNARCOTICCAS(){
+				return narcoticcas;
+			}
+			
+			/**
+			 * Sets the value of the narcoticcas property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setNARCOTICCAS(String value){
+				this.narcoticcas = value;
+			}
+			
+			/**
+			 * Gets the value of the prodno property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getPRODNO(){
+				return prodno;
+			}
+			
+			/**
+			 * Sets the value of the prodno property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setPRODNO(String value){
+				this.prodno = value;
+			}
+			
+			/**
+			 * Gets the value of the measure property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getMEASURE(){
+				return measure;
+			}
+			
+			/**
+			 * Sets the value of the measure property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setMEASURE(String value){
+				this.measure = value;
+			}
+			
+			/**
+			 * Gets the value of the pharmatype property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getPHARMATYPE(){
+				return pharmatype;
+			}
+			
+			/**
+			 * Sets the value of the pharmatype property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setPHARMATYPE(String value){
+				this.pharmatype = value;
+			}
+			
+			/**
+			 * Gets the value of the delta property.
+			 * 
+			 * @return possible object is {@link DELTAType }
+			 * 
+			 */
+			public DELTAType getDELTA(){
+				return delta;
+			}
+			
+			/**
+			 * Sets the value of the delta property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link DELTAType }
+			 * 
+			 */
+			public void setDELTA(DELTAType value){
+				this.delta = value;
+			}
+			
+			/**
+			 * <p>
+			 * Java class for anonymous complex type.
+			 * 
+			 * <p>
+			 * The following schema fragment specifies the expected content contained within this
+			 * class.
+			 * 
+			 * <pre>
+			 * &lt;complexType>
+			 *   &lt;complexContent>
+			 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+			 *       &lt;sequence>
+			 *         &lt;element name="NAME" minOccurs="0">
+			 *           &lt;simpleType>
+			 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+			 *               &lt;maxLength value="101"/>
+			 *             &lt;/restriction>
+			 *           &lt;/simpleType>
+			 *         &lt;/element>
+			 *         &lt;element name="GLN" minOccurs="0">
+			 *           &lt;simpleType>
+			 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+			 *               &lt;maxLength value="13"/>
+			 *             &lt;/restriction>
+			 *           &lt;/simpleType>
+			 *         &lt;/element>
+			 *       &lt;/sequence>
+			 *     &lt;/restriction>
+			 *   &lt;/complexContent>
+			 * &lt;/complexType>
+			 * </pre>
+			 * 
+			 * 
+			 */
+			@XmlAccessorType(XmlAccessType.FIELD)
+			@XmlType(name = "", propOrder = {
+				"name", "gln"
+			})
+			public static class COMP {
+				
+				@XmlElement(name = "NAME")
+				protected String name;
+				@XmlElement(name = "GLN")
+				protected String gln;
+				
+				/**
+				 * Gets the value of the name property.
+				 * 
+				 * @return possible object is {@link String }
+				 * 
+				 */
+				public String getNAME(){
+					return name;
+				}
+				
+				/**
+				 * Sets the value of the name property.
+				 * 
+				 * @param value
+				 *            allowed object is {@link String }
+				 * 
+				 */
+				public void setNAME(String value){
+					this.name = value;
+				}
+				
+				/**
+				 * Gets the value of the gln property.
+				 * 
+				 * @return possible object is {@link String }
+				 * 
+				 */
+				public String getGLN(){
+					return gln;
+				}
+				
+				/**
+				 * Sets the value of the gln property.
+				 * 
+				 * @param value
+				 *            allowed object is {@link String }
+				 * 
+				 */
+				public void setGLN(String value){
+					this.gln = value;
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	/**
+	 * <p>
+	 * Java class for anonymous complex type.
+	 * 
+	 * <p>
+	 * The following schema fragment specifies the expected content contained within this class.
+	 * 
+	 * <pre>
+	 * &lt;complexType>
+	 *   &lt;complexContent>
+	 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *       &lt;sequence>
+	 *         &lt;element name="LIMITATION" maxOccurs="unbounded" minOccurs="0">
+	 *           &lt;complexType>
+	 *             &lt;complexContent>
+	 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *                 &lt;sequence>
+	 *                   &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string"/>
+	 *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+	 *                   &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+	 *                   &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+	 *                 &lt;/sequence>
+	 *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+	 *               &lt;/restriction>
+	 *             &lt;/complexContent>
+	 *           &lt;/complexType>
+	 *         &lt;/element>
+	 *       &lt;/sequence>
+	 *     &lt;/restriction>
+	 *   &lt;/complexContent>
+	 * &lt;/complexType>
+	 * </pre>
+	 * 
+	 * 
+	 */
+	@XmlAccessorType(XmlAccessType.FIELD)
+	@XmlType(name = "", propOrder = {
+		"limitation"
+	})
+	public static class LIMITATIONS {
+		
+		@XmlElement(name = "LIMITATION")
+		protected List<ARTIKELSTAMM.LIMITATIONS.LIMITATION> limitation;
+		
+		/**
+		 * Gets the value of the limitation property.
+		 * 
+		 * <p>
+		 * This accessor method returns a reference to the live list, not a snapshot. Therefore any
+		 * modification you make to the returned list will be present inside the JAXB object. This
+		 * is why there is not a <CODE>set</CODE> method for the limitation property.
+		 * 
+		 * <p>
+		 * For example, to add a new item, do as follows:
+		 * 
+		 * <pre>
+		 * getLIMITATION().add(newItem);
+		 * </pre>
+		 * 
+		 * 
+		 * <p>
+		 * Objects of the following type(s) are allowed in the list
+		 * {@link ARTIKELSTAMM.LIMITATIONS.LIMITATION }
+		 * 
+		 * 
+		 */
+		public List<ARTIKELSTAMM.LIMITATIONS.LIMITATION> getLIMITATION(){
+			if (limitation == null) {
+				limitation = new ArrayList<ARTIKELSTAMM.LIMITATIONS.LIMITATION>();
+			}
+			return this.limitation;
+		}
+		
+		/**
+		 * <p>
+		 * Java class for anonymous complex type.
+		 * 
+		 * <p>
+		 * The following schema fragment specifies the expected content contained within this class.
+		 * 
+		 * <pre>
+		 * &lt;complexType>
+		 *   &lt;complexContent>
+		 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+		 *       &lt;sequence>
+		 *         &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string"/>
+		 *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+		 *         &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+		 *         &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+		 *       &lt;/sequence>
+		 *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+		 *     &lt;/restriction>
+		 *   &lt;/complexContent>
+		 * &lt;/complexType>
+		 * </pre>
+		 * 
+		 * 
+		 */
+		@XmlAccessorType(XmlAccessType.FIELD)
+		@XmlType(name = "", propOrder = {
+			"limnamebag", "dscr", "dscrf", "limitationpts"
+		})
+		public static class LIMITATION {
+			
+			@XmlElement(name = "LIMNAMEBAG", required = true)
+			protected String limnamebag;
+			@XmlElement(name = "DSCR", required = true)
+			protected String dscr;
+			@XmlElement(name = "DSCRF", required = true)
+			protected String dscrf;
+			@XmlElement(name = "LIMITATION_PTS")
+			protected Integer limitationpts;
+			@XmlAttribute(name = "DELTA")
+			protected DELTAType delta;
+			
+			/**
+			 * Gets the value of the limnamebag property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getLIMNAMEBAG(){
+				return limnamebag;
+			}
+			
+			/**
+			 * Sets the value of the limnamebag property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setLIMNAMEBAG(String value){
+				this.limnamebag = value;
+			}
+			
+			/**
+			 * Gets the value of the dscr property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCR(){
+				return dscr;
+			}
+			
+			/**
+			 * Sets the value of the dscr property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCR(String value){
+				this.dscr = value;
+			}
+			
+			/**
+			 * Gets the value of the dscrf property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCRF(){
+				return dscrf;
+			}
+			
+			/**
+			 * Sets the value of the dscrf property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCRF(String value){
+				this.dscrf = value;
+			}
+			
+			/**
+			 * Gets the value of the limitationpts property.
+			 * 
+			 * @return possible object is {@link Integer }
+			 * 
+			 */
+			public Integer getLIMITATIONPTS(){
+				return limitationpts;
+			}
+			
+			/**
+			 * Sets the value of the limitationpts property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link Integer }
+			 * 
+			 */
+			public void setLIMITATIONPTS(Integer value){
+				this.limitationpts = value;
+			}
+			
+			/**
+			 * Gets the value of the delta property.
+			 * 
+			 * @return possible object is {@link DELTAType }
+			 * 
+			 */
+			public DELTAType getDELTA(){
+				return delta;
+			}
+			
+			/**
+			 * Sets the value of the delta property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link DELTAType }
+			 * 
+			 */
+			public void setDELTA(DELTAType value){
+				this.delta = value;
+			}
+			
+		}
+		
+	}
+	
+	/**
+	 * <p>
+	 * Java class for anonymous complex type.
+	 * 
+	 * <p>
+	 * The following schema fragment specifies the expected content contained within this class.
+	 * 
+	 * <pre>
+	 * &lt;complexType>
+	 *   &lt;complexContent>
+	 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *       &lt;sequence>
+	 *         &lt;element name="PRODUCT" maxOccurs="unbounded" minOccurs="0">
+	 *           &lt;complexType>
+	 *             &lt;complexContent>
+	 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *                 &lt;sequence>
+	 *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType"/>
+	 *                   &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+	 *                   &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+	 *                   &lt;element name="ATC" minOccurs="0">
+	 *                     &lt;simpleType>
+	 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *                         &lt;maxLength value="8"/>
+	 *                       &lt;/restriction>
+	 *                     &lt;/simpleType>
+	 *                   &lt;/element>
+	 *                   &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                   &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                   &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+	 *                 &lt;/sequence>
+	 *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+	 *               &lt;/restriction>
+	 *             &lt;/complexContent>
+	 *           &lt;/complexType>
+	 *         &lt;/element>
+	 *       &lt;/sequence>
+	 *     &lt;/restriction>
+	 *   &lt;/complexContent>
+	 * &lt;/complexType>
+	 * </pre>
+	 * 
+	 * 
+	 */
+	@XmlAccessorType(XmlAccessType.FIELD)
+	@XmlType(name = "", propOrder = {
+		"product"
+	})
+	public static class PRODUCTS {
+		
+		@XmlElement(name = "PRODUCT")
+		protected List<ARTIKELSTAMM.PRODUCTS.PRODUCT> product;
+		
+		/**
+		 * Gets the value of the product property.
+		 * 
+		 * <p>
+		 * This accessor method returns a reference to the live list, not a snapshot. Therefore any
+		 * modification you make to the returned list will be present inside the JAXB object. This
+		 * is why there is not a <CODE>set</CODE> method for the product property.
+		 * 
+		 * <p>
+		 * For example, to add a new item, do as follows:
+		 * 
+		 * <pre>
+		 * getPRODUCT().add(newItem);
+		 * </pre>
+		 * 
+		 * 
+		 * <p>
+		 * Objects of the following type(s) are allowed in the list
+		 * {@link ARTIKELSTAMM.PRODUCTS.PRODUCT }
+		 * 
+		 * 
+		 */
+		public List<ARTIKELSTAMM.PRODUCTS.PRODUCT> getPRODUCT(){
+			if (product == null) {
+				product = new ArrayList<ARTIKELSTAMM.PRODUCTS.PRODUCT>();
+			}
+			return this.product;
+		}
+		
+		/**
+		 * <p>
+		 * Java class for anonymous complex type.
+		 * 
+		 * <p>
+		 * The following schema fragment specifies the expected content contained within this class.
+		 * 
+		 * <pre>
+		 * &lt;complexType>
+		 *   &lt;complexContent>
+		 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+		 *       &lt;sequence>
+		 *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v4}PRODNOType"/>
+		 *         &lt;element name="DSCR" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+		 *         &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DSCRType"/>
+		 *         &lt;element name="ATC" minOccurs="0">
+		 *           &lt;simpleType>
+		 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+		 *               &lt;maxLength value="8"/>
+		 *             &lt;/restriction>
+		 *           &lt;/simpleType>
+		 *         &lt;/element>
+		 *         &lt;element name="LIMNAMEBAG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *         &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *         &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+		 *       &lt;/sequence>
+		 *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v4}DELTAType" />
+		 *     &lt;/restriction>
+		 *   &lt;/complexContent>
+		 * &lt;/complexType>
+		 * </pre>
+		 * 
+		 * 
+		 */
+		@XmlAccessorType(XmlAccessType.FIELD)
+		@XmlType(name = "", propOrder = {
+			"prodno", "dscr", "dscrf", "atc", "limnamebag", "substance", "substancef"
+		})
+		public static class PRODUCT {
+			
+			@XmlElement(name = "PRODNO", required = true)
+			protected String prodno;
+			@XmlElement(name = "DSCR", required = true)
+			protected String dscr;
+			@XmlElement(name = "DSCRF", required = true)
+			protected String dscrf;
+			@XmlElement(name = "ATC")
+			protected String atc;
+			@XmlElement(name = "LIMNAMEBAG")
+			protected String limnamebag;
+			@XmlElement(name = "SUBSTANCE")
+			protected String substance;
+			@XmlElement(name = "SUBSTANCEF")
+			protected String substancef;
+			@XmlAttribute(name = "DELTA")
+			protected DELTAType delta;
+			
+			/**
+			 * Gets the value of the prodno property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getPRODNO(){
+				return prodno;
+			}
+			
+			/**
+			 * Sets the value of the prodno property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setPRODNO(String value){
+				this.prodno = value;
+			}
+			
+			/**
+			 * Gets the value of the dscr property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCR(){
+				return dscr;
+			}
+			
+			/**
+			 * Sets the value of the dscr property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCR(String value){
+				this.dscr = value;
+			}
+			
+			/**
+			 * Gets the value of the dscrf property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getDSCRF(){
+				return dscrf;
+			}
+			
+			/**
+			 * Sets the value of the dscrf property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setDSCRF(String value){
+				this.dscrf = value;
+			}
+			
+			/**
+			 * Gets the value of the atc property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getATC(){
+				return atc;
+			}
+			
+			/**
+			 * Sets the value of the atc property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setATC(String value){
+				this.atc = value;
+			}
+			
+			/**
+			 * Gets the value of the limnamebag property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getLIMNAMEBAG(){
+				return limnamebag;
+			}
+			
+			/**
+			 * Sets the value of the limnamebag property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setLIMNAMEBAG(String value){
+				this.limnamebag = value;
+			}
+			
+			/**
+			 * Gets the value of the substance property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getSUBSTANCE(){
+				return substance;
+			}
+			
+			/**
+			 * Sets the value of the substance property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setSUBSTANCE(String value){
+				this.substance = value;
+			}
+			
+			/**
+			 * Gets the value of the substancef property.
+			 * 
+			 * @return possible object is {@link String }
+			 * 
+			 */
+			public String getSUBSTANCEF(){
+				return substancef;
+			}
+			
+			/**
+			 * Sets the value of the substancef property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link String }
+			 * 
+			 */
+			public void setSUBSTANCEF(String value){
+				this.substancef = value;
+			}
+			
+			/**
+			 * Gets the value of the delta property.
+			 * 
+			 * @return possible object is {@link DELTAType }
+			 * 
+			 */
+			public DELTAType getDELTA(){
+				return delta;
+			}
+			
+			/**
+			 * Sets the value of the delta property.
+			 * 
+			 * @param value
+			 *            allowed object is {@link DELTAType }
+			 * 
+			 */
+			public void setDELTA(DELTAType value){
+				this.delta = value;
+			}
+			
+		}
+		
+	}
+	
 }
