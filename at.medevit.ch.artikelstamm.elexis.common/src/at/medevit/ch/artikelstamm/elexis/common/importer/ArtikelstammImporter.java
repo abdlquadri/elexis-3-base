@@ -94,7 +94,11 @@ public class ArtikelstammImporter {
 		populateProducsAndLimitationsMap(importStamm);
 		monitor.worked(2);
 		
+		
 		int currentVersion = ArtikelstammItem.getCurrentVersion();
+		if(newVersion==null){
+			newVersion=currentVersion;
+		}
 		if (newVersion < currentVersion) {
 			log.warn("Downgrade initiated v" + currentVersion + " -> v" + newVersion);
 		}
