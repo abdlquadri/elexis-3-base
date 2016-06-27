@@ -38,6 +38,7 @@ import ch.elexis.data.Query;
 import ch.rgw.tools.JdbcLink;
 import ch.rgw.tools.JdbcLink.Stm;
 import ch.rgw.tools.Money;
+import ch.rgw.tools.StringTool;
 import ch.rgw.tools.TimeTool;
 import ch.rgw.tools.VersionInfo;
 
@@ -292,7 +293,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		try {
 			val = Integer.parseInt(get(FLD_PKG_SIZE));
 		} catch (NumberFormatException nfe) {
-			
+		
 		}
 		return val;
 	}
@@ -585,7 +586,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		}
 		String string = list.stream().map(o -> o.getWrappedId())
 			.reduce((u, t) -> u + StringConstants.COMMA + t).get();
-		
+			
 		Stm stm = getConnection().getStatement();
 		stm.exec("DELETE FROM " + TABLENAME + " WHERE ID IN (" + string + ")");
 		getConnection().releaseStatement(stm);
@@ -703,15 +704,17 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 	@Override
 	public Integer getDeductible(){
 		// Medikament wenn SL nicht 20 % dann 10 %
-		String val = get(FLD_DEDUCTIBLE).trim();
-		if (val == null || val.length() < 1)
+		String val = get(FLD_DEDUCTIBLE);
+		
+		if (StringTool.isNothing(val) || val.trim().length() < 1) {
 			if (isInSLList()) {
 				return 0;
 			} else {
 				return -1;
 			}
+		}
 		try {
-			return new Integer(val);
+			return new Integer(val.trim());
 		} catch (NumberFormatException nfe) {
 			return 0;
 		}
@@ -768,7 +771,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		String code = getATC_code();
 		if (code == null || code.length() < 1)
 			return Collections.emptyList();
-		
+			
 		Query<ArtikelstammItem> qre = new Query<ArtikelstammItem>(ArtikelstammItem.class);
 		qre.add(ArtikelstammItem.FLD_ATC, Query.EQUALS, code);
 		return qre.execute();
@@ -800,7 +803,7 @@ public class ArtikelstammItem extends Artikel implements IArtikelstammItem {
 		List<ArtikelstammItem> result = qre.execute();
 		if (result.size() == 1)
 			return result.get(0);
-		
+			
 		if (!pharmaCode.startsWith(String.valueOf(0))) {
 			return ArtikelstammItem.findByPharmaCode(String.valueOf(0) + pharmaCode);
 		}
