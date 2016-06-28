@@ -26,14 +26,15 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Composite;
 
 import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.DatabaseBuilder;
+import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;
 
-import ch.elexis.data.PersistentObject;
 import ch.elexis.core.ui.util.ImporterPage;
 import ch.elexis.core.ui.util.SWTHelper;
+import ch.elexis.data.PersistentObject;
 import ch.rgw.tools.ExHandler;
 import ch.rgw.tools.JdbcLink;
-import ch.rgw.tools.JdbcLink.Stm;
 
 public class IcpcImporter extends ImporterPage {
 	// ImporterPage.DBBasedImporter dbi;
@@ -70,7 +71,7 @@ public class IcpcImporter extends ImporterPage {
 	@Override
 	public IStatus doImport(IProgressMonitor monitor) throws Exception{
 		monitor.beginTask("Importiere ICPC-2", 727);
-		Database db = Database.open(new File(results[0]));
+		Database db = DatabaseBuilder.open(new File(results[0]));
 		monitor.worked(1);
 		pj = PersistentObject.getConnection();
 		
@@ -78,16 +79,13 @@ public class IcpcImporter extends ImporterPage {
 		pj.exec("DELETE FROM " + IcpcCode.TABLENAME + " where ID != 'ver'");
 		monitor.worked(1);
 		monitor.subTask("Lese Daten ein");
-		PreparedStatement ps =
-			pj.prepareStatement("INSERT INTO "
-				+ IcpcCode.TABLENAME
-				+ " ("
-				+ "ID,component,txt,synonyms,short,icd10,criteria,inclusion,exclusion,consider,note)"
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+		PreparedStatement ps = pj.prepareStatement("INSERT INTO " + IcpcCode.TABLENAME + " ("
+			+ "ID,component,txt,synonyms,short,icd10,criteria,inclusion,exclusion,consider,note)"
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?);");
 		monitor.worked(1);
 		try {
 			Table table = db.getTable("ICPC2eGM");
-			Iterator<Map<String, Object>> it = table.iterator();
+			Iterator<Row> it = table.iterator();
 			while (it.hasNext()) {
 				Map<String, Object> row = it.next();
 				ps.setString(1, (String) row.get("CODE")); // id

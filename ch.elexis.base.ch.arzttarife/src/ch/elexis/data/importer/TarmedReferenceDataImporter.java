@@ -27,6 +27,9 @@ import org.eclipse.core.runtime.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.DatabaseBuilder;
+
 import ch.elexis.arzttarife_schweiz.Messages;
 import ch.elexis.core.constants.Preferences;
 import ch.elexis.core.data.activator.CoreHub;
@@ -50,8 +53,6 @@ import ch.rgw.tools.JdbcLink;
 import ch.rgw.tools.JdbcLink.Stm;
 import ch.rgw.tools.TimeSpan;
 import ch.rgw.tools.TimeTool;
-
-import com.healthmarketscience.jackcess.Database;
 
 public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 	private static final Logger logger = LoggerFactory.getLogger(TarmedReferenceDataImporter.class);
@@ -91,7 +92,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 	}
 	
 	@Override
-	public IStatus performImport(@Nullable IProgressMonitor ipm, InputStream input, @Nullable Integer version){
+	public IStatus performImport(@Nullable IProgressMonitor ipm, InputStream input,
+		@Nullable Integer version){
 		if (ipm == null) {
 			ipm = new NullProgressMonitor();
 		}
@@ -116,7 +118,7 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 		TarmedLeistung leistung = TarmedLeistung.load("00.0010");
 		if (leistung.exists())
 			updateIDs = true;
-		
+			
 		try {
 			source = cacheDb.getStatement();
 			dest = pj.getStatement();
@@ -132,8 +134,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				"SEITE", "SEX", "SPARTE", "ZR_EINHEIT"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			ipm.worked(13);
 			ipm.subTask(Messages.TarmedImporter_chapter);
-			try(ResultSet res = source.query(
-				String.format("SELECT * FROM %sKAPITEL_TEXT WHERE SPRACHE=%s", ImportPrefix, lang))) {
+			try (ResultSet res = source.query(String
+				.format("SELECT * FROM %sKAPITEL_TEXT WHERE SPRACHE=%s", ImportPrefix, lang))) {
 				while (res != null && res.next()) {
 					String code = res.getString("KNR"); //$NON-NLS-1$
 					
@@ -159,8 +161,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 			}
 			ipm.subTask(Messages.TarmedImporter_singleLst);
 			ResultSet res = source.query(String.format("SELECT * FROM %sLEISTUNG", ImportPrefix)); //$NON-NLS-1$
-			PreparedStatement preps_extension =
-				pj.prepareStatement("UPDATE TARMED_EXTENSION SET MED_INTERPRET=?,TECH_INTERPRET=? WHERE CODE=?"); //$NON-NLS-1$
+			PreparedStatement preps_extension = pj.prepareStatement(
+				"UPDATE TARMED_EXTENSION SET MED_INTERPRET=?,TECH_INTERPRET=? WHERE CODE=?"); //$NON-NLS-1$
 			TimeTool validFrom = new TimeTool();
 			while (res.next() == true) {
 				validFrom.set(res.getString("GUELTIG_VON"));
@@ -173,9 +175,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 					tl = new TarmedLeistung(id, res.getString("LNR"), res.getString("KNR"), //$NON-NLS-1$
 						"0000", convert(res, "QT_DIGNITAET"), convert(res, "Sparte")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
-				TimeSpan tsValid =
-					new TimeSpan(new TimeTool(res.getString("GUELTIG_VON")), new TimeTool(
-						res.getString("GUELTIG_BIS")));
+				TimeSpan tsValid = new TimeSpan(new TimeTool(res.getString("GUELTIG_VON")),
+					new TimeTool(res.getString("GUELTIG_BIS")));
 				logger.debug(tsValid.dump());
 				
 				tl.set(new String[] {
@@ -186,10 +187,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				
 				// get QL_DIGNITAET
 				String dqua = "";
-				ResultSet rsub =
-					stmCached.query(String.format(
-						"SELECT * FROM %sLEISTUNG_DIGNIQUALI WHERE LNR=%s", ImportPrefix,
-						JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
+				ResultSet rsub = stmCached
+					.query(String.format("SELECT * FROM %sLEISTUNG_DIGNIQUALI WHERE LNR=%s",
+						ImportPrefix, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
 				List<Map<String, String>> validResults = getValidValueMaps(rsub, validFrom);
 				if (!validResults.isEmpty()) {
 					dqua = getLatestMap(validResults).get("QL_DIGNITAET");
@@ -198,10 +198,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				
 				// get BEZ_255, MED_INTERPRET, TECH_INTERPRET
 				String kurz = ""; //$NON-NLS-1$
-				rsub =
-					stmCached.query(String.format(
-						"SELECT * FROM %sLEISTUNG_TEXT WHERE SPRACHE=%s AND LNR=%s", ImportPrefix,
-						lang, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
+				rsub = stmCached.query(
+					String.format("SELECT * FROM %sLEISTUNG_TEXT WHERE SPRACHE=%s AND LNR=%s",
+						ImportPrefix, lang, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
 				validResults = getAllValueMaps(rsub);
 				if (!validResults.isEmpty()) {
 					Map<String, String> row = getLatestMap(validResults);
@@ -215,19 +214,19 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				}
 				rsub.close();
 				tl.set(new String[] {
-					"DigniQuali", "Text"}, dqua, kurz); //$NON-NLS-1$ //$NON-NLS-2$
+					"DigniQuali", "Text" //$NON-NLS-1$//$NON-NLS-2$
+				}, dqua, kurz);
 				
 				Hashtable<String, String> ext = tl.loadExtension();
 				put(ext, res, "LEISTUNG_TYP", "SEITE", "SEX", "ANAESTHESIE", "K_PFL", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 					"BEHANDLUNGSART", "TP_AL", "TP_ASSI", "TP_TL", "ANZ_ASSI", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 					"LSTGIMES_MIN", "VBNB_MIN", "BEFUND_MIN", "RAUM_MIN", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					"WECHSEL_MIN", "F_AL", "F_TL"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				
+					
 				// get LNR_MASTER
-				rsub =
-					stmCached.query(String.format(
-						"SELECT * FROM %sLEISTUNG_HIERARCHIE WHERE LNR_SLAVE=%s", ImportPrefix,
-						JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
+				rsub = stmCached
+					.query(String.format("SELECT * FROM %sLEISTUNG_HIERARCHIE WHERE LNR_SLAVE=%s",
+						ImportPrefix, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
 				validResults = getValidValueMaps(rsub, validFrom);
 				if (!validResults.isEmpty()) {
 					// importing all bezugs ziffer will mess up tarmed bill -> just import 1st
@@ -248,10 +247,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				rsub.close();
 				
 				// get LNR_SLAVE, TYP
-				rsub =
-					stmCached.query(String.format(
-						"SELECT * FROM %sLEISTUNG_KOMBINATION WHERE LNR_MASTER=%s", ImportPrefix,
-						JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
+				rsub = stmCached
+					.query(String.format("SELECT * FROM %sLEISTUNG_KOMBINATION WHERE LNR_MASTER=%s",
+						ImportPrefix, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
 				String kombination_and = ""; //$NON-NLS-1$
 				String kombination_or = ""; //$NON-NLS-1$
 				validResults = getValidValueMaps(rsub, validFrom);
@@ -282,10 +280,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				importKumulations(tl.getCode(), stmCached);
 				
 				// get OPERATOR, MENGE, ZR_ANZAHL, PRO_NACH, ZR_EINHEIT
-				rsub =
-					stmCached.query(String.format(
-						"SELECT * FROM %sLEISTUNG_MENGEN_ZEIT WHERE LNR=%s", ImportPrefix,
-						JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
+				rsub = stmCached
+					.query(String.format("SELECT * FROM %sLEISTUNG_MENGEN_ZEIT WHERE LNR=%s",
+						ImportPrefix, JdbcLink.wrap(tl.getCode()))); //$NON-NLS-1$
 				String limits = ""; //$NON-NLS-1$
 				validResults = getValidValueMaps(rsub, validFrom);
 				if (!validResults.isEmpty()) {
@@ -363,7 +360,7 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 	 * @throws SQLException
 	 */
 	private void importKumulations(String code, Stm stmCached) throws SQLException{
-		try(ResultSet res =
+		try (ResultSet res =
 			stmCached.query(String.format("SELECT * FROM %sLEISTUNG_KUMULATION WHERE LNR_MASTER=%s",
 				ImportPrefix, JdbcLink.wrap(code)))) {
 			TimeTool fromTime = new TimeTool();
@@ -397,19 +394,18 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 				tablename = iter.next();
 				totRows += mdbDB.getTable(tablename).getRowCount();
 			}
-			monitor.beginTask(Messages.TarmedImporter_importLstg, (int) (totRows * weight)
-				+ mdbDB.getTable("LEISTUNG").getRowCount()
-				+ mdbDB.getTable("KAPITEL_TEXT").getRowCount());
-			
+			monitor.beginTask(Messages.TarmedImporter_importLstg,
+				(int) (totRows * weight) + mdbDB.getTable("LEISTUNG").getRowCount()
+					+ mdbDB.getTable("KAPITEL_TEXT").getRowCount());
+					
 			int j = 0;
 			iter = cachedDbTables.iterator();
 			while (iter.hasNext()) {
 				j++;
 				tablename = iter.next();
-				String msg =
-					String.format(Messages.TarmedImporter_convertTable, tablename, ImportPrefix
-						+ tablename, j, nrTables, mdbDB.getTable(tablename).getRowCount(),
-						mdbFilename);
+				String msg = String.format(Messages.TarmedImporter_convertTable, tablename,
+					ImportPrefix + tablename, j, nrTables, mdbDB.getTable(tablename).getRowCount(),
+					mdbFilename);
 				monitor.subTask(msg);
 				try {
 					int nrRows = aw.convertTable(tablename, cacheDb);
@@ -433,7 +429,7 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 		try {
 			aw = new AccessWrapper(file);
 			aw.setPrefixForImportedTableNames(ImportPrefix);
-			mdbDB = Database.open(file, true, Database.DEFAULT_AUTO_SYNC);
+			mdbDB = DatabaseBuilder.open(file); //, true, Database.DEFAULT_AUTO_SYNC);
 			cachedDbTables = mdbDB.getTableNames();
 		} catch (IOException e) {
 			logger.error("Failed to open access file " + file, e);
@@ -457,13 +453,12 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 		
 		Stm stm = pj.getStatement();
 		Stm stmCached = cacheDb.getStatement();
-		PreparedStatement ps =
-			pj.prepareStatement("INSERT INTO TARMED_DEFINITIONEN (Spalte,Kuerzel,Titel) VALUES (?,?,?)"); //$NON-NLS-1$
+		PreparedStatement ps = pj.prepareStatement(
+			"INSERT INTO TARMED_DEFINITIONEN (Spalte,Kuerzel,Titel) VALUES (?,?,?)"); //$NON-NLS-1$
 		try {
 			for (String s : strings) {
-				ResultSet res =
-					stmCached.query(String.format(
-						"SELECT * FROM %sCT_" + s + " WHERE SPRACHE=%s", ImportPrefix, lang)); //$NON-NLS-1$
+				ResultSet res = stmCached.query(String
+					.format("SELECT * FROM %sCT_" + s + " WHERE SPRACHE=%s", ImportPrefix, lang)); //$NON-NLS-1$
 				while (res.next()) {
 					ps.setString(1, s);
 					ps.setString(2, res.getString(1));
@@ -601,9 +596,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 		PreparedStatement ps = null;
 		// update existing ids of Verrechnet
 		try {
-			ps =
-				pj.prepareStatement("UPDATE " + Verrechnet.TABLENAME + " SET leistg_code=? WHERE id=?"); //$NON-NLS-1$
-			
+			ps = pj.prepareStatement(
+				"UPDATE " + Verrechnet.TABLENAME + " SET leistg_code=? WHERE id=?"); //$NON-NLS-1$
+				
 			Query<Verrechnet> vQuery = new Query<Verrechnet>(Verrechnet.class);
 			vQuery.add(Verrechnet.CLASS, "=", TarmedLeistung.class.getName());
 			List<Verrechnet> verrechnete = vQuery.execute();
@@ -649,8 +644,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 			for (Leistungsblock block : blocks) {
 				StringBuilder newCodes = new StringBuilder();
 				// get blob
-				byte[] compressed =
-					getBinaryRaw(Leistungsblock.FLD_LEISTUNGEN, Leistungsblock.TABLENAME, block.getId());
+				byte[] compressed = getBinaryRaw(Leistungsblock.FLD_LEISTUNGEN,
+					Leistungsblock.TABLENAME, block.getId());
 				if (compressed != null) {
 					// get String representing all contained leistungen
 					String storable = new String(CompEx.expand(compressed), "UTF-8"); //$NON-NLS-1$
@@ -659,8 +654,8 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 						if (p != null && !p.isEmpty()) {
 							String[] parts = p.split("::");
 							if (parts[0].equals(TarmedLeistung.class.getName())) {
-								monitor.subTask(Messages.TarmedImporter_updateBlock + " "
-									+ parts[1]);
+								monitor
+									.subTask(Messages.TarmedImporter_updateBlock + " " + parts[1]);
 								TarmedLeistung leistung =
 									(TarmedLeistung) TarmedLeistung.getFromCode(parts[1]);
 								if (leistung != null) {
@@ -727,9 +722,9 @@ public class TarmedReferenceDataImporter extends AbstractReferenceDataImporter {
 	 */
 	private byte[] getBinaryRaw(final String field, String tablename, String id){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ").append(field).append(" FROM ").append(tablename)
-			.append(" WHERE ID='").append(id).append("'");
-		
+		sql.append("SELECT ").append(field).append(" FROM ").append(tablename).append(" WHERE ID='")
+			.append(id).append("'");
+			
 		Stm stm = null;
 		try {
 			stm = pj.getStatement();
