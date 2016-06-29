@@ -17,7 +17,6 @@ Require-Bundle: org.eclipse.ui.forms,
  ch.elexis.core.ui.importer.div;bundle-version="3.1.0",
  ch.elexis.base.ch.ebanking;bundle-version="3.0.0",
  ch.elexis.base.ch.labortarif_2009;bundle-version="3.0.0",
- org.apache.commons.io;bundle-version="2.2.0",
  at.medevit.elexis.tarmed.model,
  au.com.bytecode.opencsv;bundle-version="2.4.0"
 Export-Package: ch.elexis.TarmedRechnung,
@@ -27,7 +26,8 @@ Export-Package: ch.elexis.TarmedRechnung,
  ch.elexis.tarmedprefs,
  ch.elexis.views
 Bundle-ClassPath: .
-Import-Package: org.jdom,
+Import-Package: org.apache.commons.io,
+ org.jdom,
  org.jdom.input,
  org.jdom.output,
  org.jdom.transform,

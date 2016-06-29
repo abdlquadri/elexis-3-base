@@ -230,8 +230,8 @@
   <module>com.hilotec.elexis.toolbar</module>
   <module>com.jsigle.noatext_jsl</module>
   <module>com.jsigle.noatext_jsl.feature</module>
-  <module>de.fhdo.elexis.perspective</module>
-  <module>de.fhdo.elexis.perspective.feature</module>
+  <!-- module>de.fhdo.elexis.perspective</module>
+  <module>de.fhdo.elexis.perspective.feature</module -->
   <!-- module>org.iatrix</module>
   <module>org.iatrix.feature</module>
   <module>org.iatrix.bestellung.rose</module>
@@ -273,17 +273,18 @@
 <url>http://www.elexis.ch/ungrad/p2/base-deps</url>
 <layout>p2</layout>
 </repository>
+
 <repository>
   <id>second.level.repo</id>
   <!-- url>file:///Volumes/zfslocal/dev/elexis-ungrad/ungrad-deps/target/repository</url -->
-  <url>http://www.elexis.ch/ungrad/p2/derived-deps</url>
+  <url>http://www.elexis.ch/ungrad/p2/dependencies/latest</url>
   <layout>p2</layout>
 </repository>
-<repository>
+<!-- repository>
   <id>eclipse.orbit</id>
   <url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository</url>
   <layout>p2</layout>
-</repository>
+</repository -->
   <!-- repository>
     <id>mirror.4.elexis.${repo_variant}</id>
     <url>http://download.elexis.info/mirror.4.elexis/${nonElexisP2variant}/</url>

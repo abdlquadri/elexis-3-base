@@ -6,8 +6,8 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: elexis.ch
 Fragment-Host: ch.elexis.externe_dokumente
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
- ch.elexis.core.application;bundle-version="3.1.0",
+Require-Bundle: ch.elexis.core.application;bundle-version="3.1.0",
  junit;bundle-version="4.12.0"
-Import-Package: ch.elexis.data
+Import-Package: ch.elexis.data,
+ org.apache.commons.io
 Bundle-ClassPath: .

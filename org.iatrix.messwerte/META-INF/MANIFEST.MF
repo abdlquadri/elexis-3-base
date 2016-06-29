@@ -10,9 +10,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.forms,
  ch.elexis.core;bundle-version="3.2.0",
  ch.rgw.utility;bundle-version="3.0.0",
- org.slf4j.api,
  ch.elexis.core.data,
  ch.elexis.core.ui,
- ch.elexis.core.ui.icons
+ ch.elexis.core.ui.icons,
+ slf4j.api;bundle-version="1.7.21"
 Eclipse-LazyStart: true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

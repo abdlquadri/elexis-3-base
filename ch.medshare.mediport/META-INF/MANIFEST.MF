@@ -15,8 +15,8 @@ Require-Bundle: ch.elexis.core;bundle-version="3.0.0",
  ch.rgw.utility,
  ch.elexis.core;bundle-version="0.0.2",
  org.jdom,
- org.slf4j.api,
- ch.medshare.commons;bundle-version="3.0.0"
+ ch.medshare.commons;bundle-version="3.0.0",
+ slf4j.api;bundle-version="1.7.21"
 Export-Package: ch.medshare.mediport.config
 Bundle-Vendor: medshare.ch
 Bundle-ClassPath: .

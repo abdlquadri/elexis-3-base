@@ -12,6 +12,6 @@ Require-Bundle: org.eclipse.ui,
  ch.elexis.base.ch.diagnosecodes,
  ch.elexis.core.data,
  ch.elexis.core.ui,
- org.slf4j.api
+ slf4j.api;bundle-version="1.7.21"
 Eclipse-LazyStart: true
 Bundle-Vendor: medshare.ch

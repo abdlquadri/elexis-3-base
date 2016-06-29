@@ -12,11 +12,11 @@ Require-Bundle: ch.rgw.utility;bundle-version="2.0.2",
  ch.elexis.core;bundle-version="0.0.2",
  ch.elexis.core.data;bundle-version="3.0.0",
  ch.elexis.core.ui,
- org.slf4j.api,
  org.apache.commons.codec;bundle-version="1.4.0",
  ch.elexis.fop_wrapper;bundle-version="3.0.0",
  com.sun.jna;bundle-version="3.0.0",
- ch.elexis.docbox.ws.client
+ ch.elexis.docbox.ws.client,
+ slf4j.api;bundle-version="1.7.21"
 Bundle-ClassPath: .,
  rsc/
 Bundle-Localization: plugin

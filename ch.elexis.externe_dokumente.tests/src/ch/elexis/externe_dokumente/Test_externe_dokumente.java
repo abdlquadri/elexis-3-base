@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -100,7 +101,8 @@ public class Test_externe_dokumente {
 
 	@BeforeClass
 	public static void setupOnce(){
-		testRoot = org.apache.commons.io.FileUtils.getTempDirectoryPath() + "/data/test";
+		
+		testRoot = CoreHub.getTempDir().getAbsolutePath();
 		anneCecile = new Patient("Beck", "Anne-Cécile", "01.07.2002", "f");
 		fritz = new Patient("Meier", "Fritz", "04.01.1981", "m");
 		fritz.set("Geburtsdatum", "");

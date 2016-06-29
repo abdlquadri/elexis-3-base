@@ -4,7 +4,7 @@ Bundle-Name: Patientenstatistik für Archie
 Bundle-SymbolicName: ch.elexis.archie.patientstatistik;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: elexis.info
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.forms,
  org.eclipse.swt,
@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
  ch.elexis.core.data;bundle-version="3.0.0",
  ch.elexis.core.ui;bundle-version="3.0.0",
  ch.elexis.core.ui.icons;bundle-version="3.0.0",
- ch.unibe.iam.scg.archie;bundle-version="3.0.0"
+ ch.unibe.iam.scg.archie;bundle-version="3.0.0",
+ slf4j.api;bundle-version="1.7.21"

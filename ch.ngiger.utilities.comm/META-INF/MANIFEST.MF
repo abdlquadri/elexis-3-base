@@ -7,7 +7,7 @@ Bundle-Vendor: Niklaus Giger
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: ch.rgw.utility,
  ch.elexis.core.data,
- org.slf4j.api
+ slf4j.api;bundle-version="1.7.21"
 Bundle-ClassPath: lib/commons-net-1.4.1.jar,
  .
 Import-Package: org.eclipse.swt.program
