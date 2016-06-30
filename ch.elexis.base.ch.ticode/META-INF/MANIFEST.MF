@@ -4,6 +4,6 @@ Bundle-Name: Tessiner Code
 Bundle-SymbolicName: ch.elexis.base.ch.ticode
 Bundle-Version: 3.2.0.qualifier
 Bundle-Vendor: elexis.info
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.osgi;bundle-version="3.8.2"
 Export-Package: ch.elexis.base.ch.ticode
