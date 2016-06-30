@@ -6,11 +6,11 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: Niklaus Giger
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: ch.rgw.utility,
- ch.elexis.core.data,
- slf4j.api;bundle-version="1.7.21"
+ ch.elexis.core.data
 Bundle-ClassPath: lib/commons-net-1.4.1.jar,
  .
-Import-Package: org.eclipse.swt.program
+Import-Package: org.eclipse.swt.program,
+ org.slf4j
 Bundle-ActivationPolicy: lazy
 Export-Package: ch.ngiger.comm.ftp,
  ch.ngiger.comm.vpn,

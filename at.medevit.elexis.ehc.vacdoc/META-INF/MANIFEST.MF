@@ -12,8 +12,8 @@ Require-Bundle: at.medevit.elexis.impfplan;bundle-version="3.0.1",
  ch.elexis.core.data,
  ch.rgw.utility;bundle-version="3.1.0",
  ch.elexis.core,
- org.eclipse.core.jobs;bundle-version="3.5.200",
- slf4j.api;bundle-version="1.7.21"
+ org.eclipse.core.jobs;bundle-version="3.5.200"
 Import-Package: at.medevit.ch.artikelstamm,
- ch.artikelstamm.elexis.common
+ ch.artikelstamm.elexis.common,
+ org.slf4j
 Export-Package: at.medevit.elexis.ehc.vacdoc.service

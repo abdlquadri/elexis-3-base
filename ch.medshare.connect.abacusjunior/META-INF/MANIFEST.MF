@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  ch.elexis.core.ui.importer.div;bundle-version="3.2.0",
  ch.elexis.base.ch.diagnosecodes,
  ch.elexis.core.data,
- ch.elexis.core.ui,
- slf4j.api;bundle-version="1.7.21"
+ ch.elexis.core.ui
 Eclipse-LazyStart: true
 Bundle-Vendor: medshare.ch
+Import-Package: org.slf4j;version="1.7.2"

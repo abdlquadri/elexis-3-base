@@ -17,11 +17,11 @@ Require-Bundle: ch.elexis.core;bundle-version="3.0.0",
  com.healthmarketscience.jackcess,
  ch.elexis.core.ui.medication,
  ch.elexis.core.ui.laboratory,
- ch.elexis.core.ui.contacts,
- slf4j.api;bundle-version="1.7.21"
+ ch.elexis.core.ui.contacts
 Eclipse-LazyStart: false
 Bundle-Activator: ch.elexis.icpc.Activator
 Export-Package: ch.elexis.icpc; uses:="org.eclipse.core.runtime,  ch.rgw.tools,  ch.elexis.actions,  ch.elexis.util,  ch.elexis.data,  ch.elexis.views.codesystems,  ch.elexis.icpc.views,  org.eclipse.ui,  org.eclipse.swt.custom,  org.eclipse.ui.plugin,  org.eclipse.ui.forms.widgets,  org.eclipse.osgi.util,  ch.elexis.text,  ch.elexis.views,  ch.elexis.util.viewers,  org.eclipse.jface.viewers,  org.osgi.framework,  org.eclipse.swt.widgets"
 Created-By: Buildr
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.slf4j
 

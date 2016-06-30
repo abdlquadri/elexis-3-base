@@ -15,8 +15,7 @@ Require-Bundle: ch.rgw.utility;bundle-version="2.0.2",
  org.apache.commons.codec;bundle-version="1.4.0",
  ch.elexis.fop_wrapper;bundle-version="3.0.0",
  com.sun.jna;bundle-version="3.0.0",
- ch.elexis.docbox.ws.client,
- slf4j.api;bundle-version="1.7.21"
+ ch.elexis.docbox.ws.client
 Bundle-ClassPath: .,
  rsc/
 Bundle-Localization: plugin
@@ -26,3 +25,4 @@ Export-Package: ch.docbox.cdach,
  ch.docbox.elexis,
  ch.docbox.ws.cdachservices,
  ch.swissmedicalsuite
+Import-Package: org.slf4j

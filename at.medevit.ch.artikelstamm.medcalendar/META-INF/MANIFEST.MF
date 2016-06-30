@@ -16,8 +16,8 @@ Require-Bundle: org.eclipse.core.runtime,
  ch.rgw.utility,
  at.medevit.ch.artikelstamm.ui,
  at.medevit.ch.artikelstamm.elexis.common,
- org.apache.commons.lang,
- slf4j.api;bundle-version="1.7.21"
-Import-Package: org.eclipse.wb.swt
+ org.apache.commons.lang
+Import-Package: org.eclipse.wb.swt,
+ org.slf4j
 Bundle-ClassPath: lib/,
  .
