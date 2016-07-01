@@ -31,9 +31,6 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.iatrix.Iatrix;
 
 import ch.elexis.core.data.activator.CoreHub;
-import ch.elexis.core.data.events.ElexisEvent;
-import ch.elexis.core.data.events.ElexisEventDispatcher;
-import ch.elexis.core.data.events.ElexisEventListenerImpl;
 import ch.elexis.core.ui.actions.BackgroundJob;
 import ch.elexis.core.ui.actions.BackgroundJob.BackgroundJobListener;
 import ch.elexis.core.ui.actions.ObjectFilterRegistry;
@@ -50,7 +47,7 @@ import ch.elexis.data.Query;
  * @author Daniel Lutz
  *
  */
-public class KonsListDisplay extends Composite implements BackgroundJobListener {
+public class KonsListDisplay extends Composite implements BackgroundJobListener, IJournalArea {
 	private Patient patient = null;
 
 	private final FormToolkit toolkit;
@@ -69,17 +66,6 @@ public class KonsListDisplay extends Composite implements BackgroundJobListener 
 	// default is true (show all consultations)
 	private boolean showAllConsultations = true;
 
-	private final ElexisEventListenerImpl eeli_kons =
-		new ElexisEventListenerImpl(Konsultation.class, ElexisEvent.EVENT_RELOAD) {
-			@Override
-			public void run(ElexisEvent ev){
-				if (patient != null) {
-					dataLoader.invalidate();
-					dataLoader.schedule();
-				}
-			}
-		};
-
 	public KonsListDisplay(Composite parent){
 		super(parent, SWT.BORDER);
 
@@ -96,8 +82,6 @@ public class KonsListDisplay extends Composite implements BackgroundJobListener 
 
 		dataLoader = new KonsLoader();
 		dataLoader.addListener(this);
-
-		ElexisEventDispatcher.getInstance().addListeners(eeli_kons);
 	}
 
 	/**
@@ -289,17 +273,17 @@ public class KonsListDisplay extends Composite implements BackgroundJobListener 
 					return Status.CANCEL_STATUS;
 				}
 
+				if (CoreHub.globalCfg != null) {
 				// convert Konsultation objects to KonsData objects
-
-				int maxShownCharges = CoreHub.globalCfg.get(Iatrix.CFG_MAX_SHOWN_CHARGES,
-					Iatrix.CFG_MAX_SHOWN_CHARGES_DEFAULT);
-				int i = 0; // counter for maximally shown charges
-				for (Konsultation k : konsList) {
-					KonsListComposite.KonsData ks =
-						new KonsListComposite.KonsData(k, showAllCharges || i < maxShownCharges);
-					konsDataList.add(ks);
-
-					i++;
+					int maxShownCharges = CoreHub.globalCfg.get(Iatrix.CFG_MAX_SHOWN_CHARGES,
+						Iatrix.CFG_MAX_SHOWN_CHARGES_DEFAULT);
+					int i = 0; // counter for maximally shown charges
+					for (Konsultation k : konsList) {
+						KonsListComposite.KonsData ks =
+							new KonsListComposite.KonsData(k, showAllCharges || i < maxShownCharges);
+						konsDataList.add(ks);
+						i++;
+					}
 				}
 
 				monitor.worked(1);
@@ -335,4 +319,31 @@ public class KonsListDisplay extends Composite implements BackgroundJobListener 
 		}
 	}
 
+	@Override
+	public void visible(boolean mode){
+	}
+
+	@Override
+	public void activation(boolean mode){
+	}
+
+	@Override
+	public void setPatient(Patient newPatient){
+	}
+
+	static int savedKonsVersion = -1;
+	static Konsultation actKons = null;
+
+	@Override
+	public void setKons(Konsultation newKons, KonsActions op){
+		int newKonsVersion = -1;
+		if (newKons !=  null) {
+			newKonsVersion = newKons.getHeadVersion();
+			if (savedKonsVersion != newKonsVersion) {
+				savedKonsVersion = newKons.getHeadVersion();
+				actKons = newKons;
+				setPatient(newKons.getFall().getPatient(), showAllCharges,	showAllConsultations);
+			}
+		}
+	}
 }

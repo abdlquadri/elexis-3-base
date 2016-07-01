@@ -94,6 +94,9 @@ public class ArtikelstammImporter {
 		populateProducsAndLimitationsMap(importStamm);
 		monitor.worked(300);
 		
+		if (newVersion == null) {
+			newVersion = importStamm.getVERSIONID();
+		}
 		int currentVersion = ArtikelstammItem.getCurrentVersion();
 		if (newVersion == null) {
 			newVersion = currentVersion;
