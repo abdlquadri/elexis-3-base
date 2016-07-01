@@ -14,6 +14,6 @@ Require-Bundle: ch.elexis.core.data;bundle-version="3.0.0",
  xerces.Impl;bundle-version="2.9.0",
  xml-apis;bundle-version="1.3.4",
  org.jdom;bundle-version="1.1.0",
- org.odftoolkit.odfdom-java;bundle-version="0.8.6",
- slf4j.api;bundle-version="1.7.21"
+ org.odftoolkit.odfdom-java;bundle-version="0.8.6"
 Export-Package: com.hilotec.elexis.opendocument.export
+Import-Package: org.slf4j
