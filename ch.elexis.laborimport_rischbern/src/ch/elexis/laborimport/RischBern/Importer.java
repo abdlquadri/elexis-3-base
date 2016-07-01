@@ -127,7 +127,7 @@ public class Importer extends ImporterPage {
 					openmedicalDownloadMethod.invoke(openmedicalObject, new Object[] {
 						new String[] {
 							"--download", downloadDirPath, "--logPath", downloadDirPath, "--ini",
-							iniPath, "--verbose", "INF", "-#OpenMedicalKey#", "-allInOne"
+							iniPath, "--verbose", "INF", "-#OpenMedicalKey#" //, "-allInOne"
 						}
 					});
 				if (omResult instanceof Integer) {

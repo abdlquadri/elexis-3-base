@@ -15,8 +15,10 @@
  ******************************************************************************/
 package org.iatrix.views;
 
+import static ch.elexis.core.data.events.ElexisEvent.EVENT_CREATE;
 import static ch.elexis.core.data.events.ElexisEvent.EVENT_DELETE;
 import static ch.elexis.core.data.events.ElexisEvent.EVENT_DESELECTED;
+import static ch.elexis.core.data.events.ElexisEvent.EVENT_RELOAD;
 import static ch.elexis.core.data.events.ElexisEvent.EVENT_SELECTED;
 import static ch.elexis.core.data.events.ElexisEvent.EVENT_UPDATE;
 
@@ -52,7 +54,6 @@ import org.iatrix.widgets.KonsProblems;
 import org.iatrix.widgets.KonsText;
 import org.iatrix.widgets.KonsVerrechnung;
 import org.iatrix.widgets.ProblemArea;
-import org.iatrix.widgets.ProblemsTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +61,7 @@ import ch.elexis.admin.AccessControlDefaults;
 import ch.elexis.core.data.activator.CoreHub;
 import ch.elexis.core.data.events.ElexisEvent;
 import ch.elexis.core.data.events.ElexisEventDispatcher;
+import ch.elexis.core.data.events.ElexisEventListener;
 import ch.elexis.core.ui.UiDesk;
 import ch.elexis.core.ui.actions.GlobalActions;
 import ch.elexis.core.ui.actions.GlobalEventDispatcher;
@@ -106,15 +108,13 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 
 	// Parts (from top to bottom that make up our display
 	private JournalHeader formHeader = null; // Patient name, sex, birthday, remarks, sticker, account balance, account overview
-	private ProblemsTableModel problemsTableModel; // TODO: moved to external
-	private KTable problemsKTable = null; // TODO: moved to external
-	// date, mandant, Fall (drop-down list)
+	private KTable problemsKTable = null; // On top
 	private ProblemArea problemsArea = null; // KTable with Date, nr, diagnosis, therapy, code, activ/inactiv
-	private KonsProblems konsProblems = null; // Checkbox of all problems for this consultation
+	private KonsProblems konsProblems = null; // left: List of Checkbox of all problems for this consultation
 	private KonsText konsTextComposite; // Konsultationtext (with lock over all stations), revision info
-	private KonsVerrechnung konsVerrechnung = null; // Items to be billed for select consultation
+	private KonsVerrechnung konsVerrechnung = null; // right: Items to be billed for select consultation
 	private KonsDiagnosen konsDiagnosen = null; // diagnosis line
-	private KonsListDisplay konsListDisplay; // list of all consultations date, decreasing with date, mandant, case, text, billed items
+	private KonsListDisplay konsListDisplay; // bottom list of all consultations date, decreasing with date, mandant, case, text, billed items
 
 	private ViewMenus menus;
 
@@ -125,7 +125,6 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 	private Action showAllChargesAction;
 	private Action showAllConsultationsAction;
 
-	private boolean heartbeatActive = false;
 	private static List<IJournalArea> allAreas;
 
 	private KonsHeader konsHeader;
@@ -150,9 +149,8 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 		topArea.setLayout(new FillLayout(SWT.VERTICAL));
 		topArea.setBackground(topArea.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
-		problemsArea = new ProblemArea(topArea, JournalView.this.getPartName());
+		problemsArea = new ProblemArea(topArea, JournalView.this.getPartName(), getViewSite());
 		problemsKTable = problemsArea.getProblemKTable();
-		problemsTableModel = problemsArea.getProblemsTableModel();
 		Composite middleArea = tk.createComposite(mainSash, SWT.NONE);
 		middleArea.setLayout(new FillLayout());
 		Composite konsultationComposite = tk.createComposite(middleArea);
@@ -165,7 +163,7 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 
 		Composite assignmentComposite = tk.createComposite(konsultationSash);
 		assignmentComposite.setLayout(new GridLayout(1, true));
-		konsProblems = new KonsProblems(assignmentComposite);
+		konsProblems = new KonsProblems(assignmentComposite); // on the left side
 		Composite konsultationTextComposite = tk.createComposite(konsultationSash);
 		konsultationTextComposite.setLayout(new GridLayout(1, true));
 		konsTextComposite = new KonsText(konsultationTextComposite);
@@ -197,6 +195,7 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 		allAreas.add(konsDiagnosen);
 		allAreas.add(konsTextComposite);
 		allAreas.add(konsVerrechnung);
+		allAreas.add(konsListDisplay);
 		makeActions();
 		menus = new ViewMenus(getViewSite());
 		if (CoreHub.acl.request(AccessControlDefaults.AC_PURGE)) {
@@ -256,6 +255,7 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 			}
 		}
 	}
+
 	public static void updateAllKonsAreas(Konsultation newKons, IJournalArea.KonsActions op){
 		/* Not yet sure whether comparing only the id or the whole cons is better
 		 */
@@ -310,8 +310,7 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 					// TODO check if problem is part of current consultation
 					// work-around: just update the current patient and consultation
 					logEvent("eeli_problem EVENT_UPDATE");
-					setPatient(actPatient);
-					// TODO ngng: konskonsArea.updateKonsultation(!konsEditorHasFocus, false);
+					problemsArea.reloadAndRefresh();
 					break;
 				case EVENT_DESELECTED:
 					logEvent("eeli_problem EVENT_DESELECTED");
@@ -322,49 +321,75 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 			}
 		};
 
-	private final ElexisUiEventListenerImpl eeli_kons = new ElexisUiEventListenerImpl(
-		Konsultation.class, EVENT_DELETE | EVENT_UPDATE | EVENT_SELECTED | EVENT_DESELECTED) {
+	private ElexisEventListener eeli_kons_filter = new ElexisEventListener() {
+		private final ElexisEvent eetempl = new ElexisEvent(null, Konsultation.class,
+			EVENT_UPDATE | EVENT_RELOAD | EVENT_CREATE | EVENT_DELETE);
 
 		@Override
-		public void runInUi(ElexisEvent ev){
-			Konsultation k = (Konsultation) ev.getObject();
-			logEvent("eeli_kons " + (k != null ? k.getId() : "null") + " typ " + ev.getType());
-			switch (ev.getType()) {
-			case EVENT_DELETE:
-				updateAllKonsAreas(k, KonsActions.ACTIVATE_KONS);
-				break;
-			case EVENT_SELECTED:
-			case EVENT_UPDATE:
-				Patient selectedPatient = k.getFall().getPatient();
-				boolean patient_already_active =
-					actPatient != null && selectedPatient.getId().equals(actPatient.getId());
-				logEvent("eeli_kons EVENT_SELECTED patient_already_active " + patient_already_active
-					+ " " + selectedPatient.getId());
-
-				if (!patient_already_active) {
-					setPatient(selectedPatient);
-				}
-				String fallIdOfActKonst = actKons == null ? "" : actKons.getFall().getId();
-				Fall newFall = k.getFall();
-				boolean fall_already_active = newFall.getId().equals(fallIdOfActKonst);
-				logEvent("eeli_kons EVENT_SELECTED fall_already_active " + fall_already_active + " "
-					+ newFall.getId());
-				updateAllKonsAreas(k, KonsActions.ACTIVATE_KONS);
-				konsListDisplay.setPatient(actPatient, showAllChargesAction.isChecked(),
-					showAllConsultationsAction.isChecked());
-				break;
-			case EVENT_DESELECTED:
-				logEvent("eeli_kons EVENT_DESELECTED null");
-				updateAllKonsAreas(null, KonsActions.ACTIVATE_KONS);
-				break;
-			}
-
+		public ElexisEvent getElexisEventFilter(){
+			return eetempl;
 		}
 
+		@Override
+		public void catchElexisEvent(ElexisEvent ev){
+			log.debug("catchElexisEvent " + ev.getType());
+			konsListDisplay.setPatient(actPatient, showAllChargesAction.isChecked(),
+				showAllConsultationsAction.isChecked());
+		}
 	};
 
+	private final ElexisUiEventListenerImpl eeli_kons =
+		new ElexisUiEventListenerImpl(Konsultation.class,
+			EVENT_DELETE | EVENT_UPDATE | EVENT_SELECTED | EVENT_DESELECTED | EVENT_RELOAD) {
+
+			@Override
+			public void runInUi(ElexisEvent ev){
+				Konsultation k = (Konsultation) ev.getObject();
+				logEvent("eeli_kons " + (k != null ? k.getId() : "null") + " typ " + ev.getType());
+				switch (ev.getType()) {
+				case EVENT_DELETE:
+					updateAllKonsAreas(k, KonsActions.ACTIVATE_KONS);
+					break;
+				// case EVENT_RELOAD:
+				case EVENT_SELECTED:
+				case EVENT_UPDATE:
+					boolean patient_already_active = false;
+					Patient selectedPatient = null;
+					if (k != null) {
+						selectedPatient = k.getFall().getPatient();
+						patient_already_active = actPatient != null
+							&& selectedPatient.getId().equals(actPatient.getId());
+						logEvent("eeli_kons EVENT_SELECTED patient_already_active "
+							+ patient_already_active + " " + selectedPatient.getId());
+					}
+
+					String fallIdOfActKonst = actKons == null ? "" : actKons.getFall().getId();
+					Fall newFall = k.getFall();
+					boolean fall_already_active = newFall.getId().equals(fallIdOfActKonst);
+					boolean changedKonsVersion = k != null && actKons != null
+						&& k.getHeadVersion() != actKons.getHeadVersion();
+					logEvent("eeli_kons EVENT_SELECTED fall_already_active " + fall_already_active
+						+ " " + " changedKonsVersion " + changedKonsVersion + " id: "
+						+ newFall.getId());
+					if (!patient_already_active || !fall_already_active || changedKonsVersion) {
+						setPatient(selectedPatient);
+					}
+					updateAllKonsAreas(k, KonsActions.ACTIVATE_KONS);
+					konsListDisplay.setPatient(actPatient, showAllChargesAction.isChecked(),
+						showAllConsultationsAction.isChecked());
+					break;
+				case EVENT_DESELECTED:
+					logEvent("eeli_kons EVENT_DESELECTED null");
+					updateAllKonsAreas(null, KonsActions.ACTIVATE_KONS);
+					break;
+				}
+
+			}
+
+		};
+
 	private final ElexisUiEventListenerImpl eeli_fall =
-		new ElexisUiEventListenerImpl(Fall.class, ElexisEvent.EVENT_SELECTED) {
+		new ElexisUiEventListenerImpl(Fall.class, EVENT_SELECTED) {
 			@Override
 			public void runInUi(ElexisEvent ev){
 				// falls aktuell ausgewaehlte Konsulation zu diesem Fall
@@ -565,10 +590,9 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 
 	@Override
 	public void dispose(){
-		// konsTextComposite.removeKonsTextLock(); ngng not needed. is calle by setKons(null)
 		GlobalEventDispatcher.removeActivationListener(this, this);
-		ElexisEventDispatcher.getInstance().removeListeners(eeli_kons, eeli_problem, eeli_fall,
-			eeli_pat, eeli_user);
+		ElexisEventDispatcher.getInstance().removeListeners(eeli_kons_filter, eeli_kons,
+			eeli_problem, eeli_fall, eeli_pat, eeli_user);
 		super.dispose();
 	}
 
@@ -677,6 +701,30 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 	@Override
 	public void activation(boolean mode){
 		activateAllKonsAreas(mode);
+		if (mode == false) {
+			// text is neither dirty nor changed.
+			// If it es empty and nothing has been billed, we just delete this kons.
+			if (actKons == null) {
+				return;
+			}
+			boolean noLeistungen =
+				actKons.getLeistungen() == null || actKons.getLeistungen().isEmpty();
+			log.debug(actPatient.getPersonalia() + " delete3 the kons? "
+				+ konsTextComposite.getPlainText().length() + " noLeistungen " + noLeistungen);
+			if (konsTextComposite.getPlainText().length() == 0 && (noLeistungen)) {
+				Fall f = actKons.getFall();
+				Konsultation[] ret = f.getBehandlungen(false);
+				actKons.delete(true);
+				if (ret.length == 1) {
+					/* Trying to remove the associated case got me into problems.
+					 * Peter Schoenbucher argued on September, 2, 2015, that we should never
+					 * delete a case, because the case holds the information which Krankenkasse is
+					 * attached to this client. Therefore often the assistant opens a case before
+					 * the consultation starts
+					 */
+				}
+			}
+		}
 	}
 
 	@Override
@@ -685,8 +733,8 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 			showAllChargesAction.setChecked(false);
 			showAllConsultationsAction.setChecked(false);
 
-			ElexisEventDispatcher.getInstance().addListeners(eeli_kons, eeli_problem, eeli_fall,
-				eeli_pat, eeli_user);
+			ElexisEventDispatcher.getInstance().addListeners(eeli_kons_filter, eeli_kons,
+				eeli_problem, eeli_fall, eeli_pat, eeli_user);
 
 			Patient patient = ElexisEventDispatcher.getSelectedPatient();
 			setPatient(patient);
@@ -709,8 +757,8 @@ public class JournalView extends ViewPart implements IActivationListener, ISavea
 			heartbeat.enableListener(true);
 		} else {
 			heartbeat.enableListener(false);
-			ElexisEventDispatcher.getInstance().removeListeners(eeli_kons, eeli_problem, eeli_fall,
-				eeli_pat, eeli_user);
+			ElexisEventDispatcher.getInstance().removeListeners(eeli_kons_filter, eeli_kons,
+				eeli_problem, eeli_fall, eeli_pat, eeli_user);
 			setPatient(null);
 		}
 		visibleAllKonsAreas(mode);
