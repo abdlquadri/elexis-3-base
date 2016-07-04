@@ -212,8 +212,8 @@
   <module>ch.medshare.commons</module>
   <module>ch.medshare.mediport</module>
   <module>ch.medshare.mediport.feature</module>
-  <!-- module>ch.pharmed.phmprescriber</module>
-  <module>ch.pharmed.phmprescriber.feature</module -->
+  <module>ch.pharmed.phmprescriber</module>
+  <module>ch.pharmed.phmprescriber.feature</module>
   <module>com.hilotec.elexis.kgview.feature</module>
   <module>com.hilotec.elexis.kgview</module>
   <module>com.hilotec.elexis.messwerte.v2.feature</module>
@@ -267,12 +267,6 @@
     <url>http://www.elexis.ch/ungrad/p2/elexis-core/latest</url>
     <layout>p2</layout>
   </repository>
-  <repository>
-<id>base-dependencies</id>
-<!-- url>http://localhost:3000</url -->
-<url>http://www.elexis.ch/ungrad/p2/base-deps</url>
-<layout>p2</layout>
-</repository>
 
 <repository>
   <id>second.level.repo</id>
@@ -280,12 +274,12 @@
   <url>http://www.elexis.ch/ungrad/p2/dependencies/latest</url>
   <layout>p2</layout>
 </repository>
-<!-- repository>
+<repository>
   <id>eclipse.orbit</id>
   <url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository</url>
   <layout>p2</layout>
-</repository -->
-  <!-- repository>
+</repository>
+  <repository>
     <id>mirror.4.elexis.${repo_variant}</id>
     <url>http://download.elexis.info/mirror.4.elexis/${nonElexisP2variant}/</url>
     <layout>p2</layout>
@@ -294,12 +288,7 @@
     <id>elexis.3.3rdparty.libraries</id>
     <url>http://download.elexis.info/elexis.3.3rdparty.libraries/${nonElexisP2variant}</url>
     <layout>p2</layout>
-  </repository -->
-  <!-- repository>
-    <id>elexis.ungrad.deps</id>
-    <url>http://www.elexis.ch/ungrad/p2/dependencies/latest/</url>
-    <layout>p2</layout>
-  </repository -->
+  </repository>
 </repositories>
 <build>
   <plugins>
