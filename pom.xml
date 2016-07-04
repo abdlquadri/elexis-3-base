@@ -230,12 +230,12 @@
   <module>com.hilotec.elexis.toolbar</module>
   <module>com.jsigle.noatext_jsl</module>
   <module>com.jsigle.noatext_jsl.feature</module>
-  <!-- module>de.fhdo.elexis.perspective</module>
-  <module>de.fhdo.elexis.perspective.feature</module -->
-  <!-- module>org.iatrix</module>
+  <module>de.fhdo.elexis.perspective</module>
+  <module>de.fhdo.elexis.perspective.feature</module>
+  <module>org.iatrix</module>
   <module>org.iatrix.feature</module>
   <module>org.iatrix.bestellung.rose</module>
-  <module>org.iatrix.bestellung.rose.feature</module -->
+  <module>org.iatrix.bestellung.rose.feature</module>
   <module>org.iatrix.messwerte</module>
   <module>org.iatrix.messwerte.feature</module>
   <module>ch.elexis.base.p2site</module>
