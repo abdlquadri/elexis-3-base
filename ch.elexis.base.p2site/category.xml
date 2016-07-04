@@ -126,9 +126,6 @@
    <feature url="features/ch.elexis.molemax.feature_3.0.0.qualifier.jar" id="ch.elexis.molemax.feature" version="3.0.0.qualifier">
       <category name="ch.rgw.clincalhelpers"/>
    </feature>
-   <feature url="features/ch.pharmed.phmprescriber.feature_3.0.0.qualifier.jar" id="ch.pharmed.phmprescriber.feature" version="3.0.0.qualifier">
-      <category name="ch.rgw.clincalhelpers"/>
-   </feature>
    <feature url="features/at.medevit.elexis.inbox.feature_3.0.0.qualifier.jar" id="at.medevit.elexis.inbox.feature" version="3.0.0.qualifier">
       <category name="ch.rgw.ungrad.docmgr"/>
    </feature>
@@ -151,9 +148,6 @@
       <category name="ch.rgw.organizational"/>
    </feature>
    <feature url="features/com.hilotec.elexis.toolbar.feature_3.0.0.qualifier.jar" id="com.hilotec.elexis.toolbar.feature" version="3.0.0.qualifier">
-      <category name="ch.rgw.organizational"/>
-   </feature>
-   <feature url="features/de.fhdo.elexis.perspective.feature_3.0.0.qualifier.jar" id="de.fhdo.elexis.perspective.feature" version="3.0.0.qualifier">
       <category name="ch.rgw.organizational"/>
    </feature>
    <feature url="features/at.medevit.elexis.cobasmira.feature_3.0.0.qualifier.jar" id="at.medevit.elexis.cobasmira.feature" version="3.0.0.qualifier">
