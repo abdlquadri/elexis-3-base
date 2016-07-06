@@ -59,7 +59,9 @@ public class Importer extends ImporterPage {
 	private Object openmedicalObject = null;
 	private Method openmedicalDownloadMethod = null;
 	
-	public Importer(){}
+	public Importer(){
+		System.out.println("here");
+	}
 	
 	private static URLClassLoader getURLClassLoader(final URL jarURL){
 		return new URLClassLoader(new URL[] {
@@ -77,7 +79,7 @@ public class Importer extends ImporterPage {
 				try {
 					URLClassLoader urlLoader =
 						getURLClassLoader(new URL("file", null, jar.getAbsolutePath()));
-					
+						
 					Class<?> openmedicalClass = urlLoader.loadClass(OPENMEDICAL_MAINCLASS);
 					
 					// try to get the download method
@@ -123,13 +125,12 @@ public class Importer extends ImporterPage {
 		int res = -1;
 		if (iniPath != null) {
 			try {
-				Object omResult =
-					openmedicalDownloadMethod.invoke(openmedicalObject, new Object[] {
-						new String[] {
-							"--download", downloadDirPath, "--logPath", downloadDirPath, "--ini",
-							iniPath, "--verbose", "INF", "-#OpenMedicalKey#" //, "-allInOne"
+				Object omResult = openmedicalDownloadMethod.invoke(openmedicalObject, new Object[] {
+					new String[] {
+						"--download", downloadDirPath, "--logPath", downloadDirPath, "--ini",
+						iniPath, "--verbose", "INF", "-#OpenMedicalKey#" //, "-allInOne"
 						}
-					});
+				});
 				if (omResult instanceof Integer) {
 					res = ((Integer) omResult).intValue();
 					System.out.println(res + " files downoladed");
@@ -165,12 +166,11 @@ public class Importer extends ImporterPage {
 				try {
 					rs = hlp.importFile(f, archiveDir, false);
 				} catch (IOException e) {
-					SWTHelper.showError("Import error",
-							e.getMessage());
+					SWTHelper.showError("Import error", e.getMessage());
 				}
 			}
-			SWTHelper.showInfo("Verbindung mit Labor " + MY_LAB + " erfolgreich", "Es wurden "
-				+ Integer.toString(res) + " Dateien verarbeitet");
+			SWTHelper.showInfo("Verbindung mit Labor " + MY_LAB + " erfolgreich",
+				"Es wurden " + Integer.toString(res) + " Dateien verarbeitet");
 		} else {
 			SWTHelper.showError("Falsches Verzeichnis",
 				"Bitte kontrollieren Sie die Einstellungen für das Download-Verzeichnis");
@@ -233,7 +233,7 @@ public class Importer extends ImporterPage {
 	 * FILE is chosen, the file path is stored in results[1].
 	 * 
 	 * @author gerry, danlutz
-	 * 
+	 * 		
 	 */
 	private class LabImporter extends Composite {
 		private final Button bFile;
@@ -324,8 +324,8 @@ public class Importer extends ImporterPage {
 						home.results[1] = filename;
 						
 						CoreHub.localCfg.set("ImporterPage/" + home.getTitle() + "/type", FILE); //$NON-NLS-1$ //$NON-NLS-2$
-						CoreHub.localCfg.set(
-							"ImporterPage/" + home.getTitle() + "/filename", filename); //$NON-NLS-1$ //$NON-NLS-2$
+						CoreHub.localCfg.set("ImporterPage/" + home.getTitle() + "/filename", //$NON-NLS-1$//$NON-NLS-2$
+							filename);
 					} else {
 						bFile.setSelection(false);
 						bDirect.setSelection(true);
@@ -352,7 +352,8 @@ public class Importer extends ImporterPage {
 					
 					FileDialog fdl = new FileDialog(parent.getShell(), SWT.OPEN);
 					fdl.setFilterExtensions(new String[] {
-						"*"}); //$NON-NLS-1$
+						"*" //$NON-NLS-1$
+					});
 					// fdl.setFilterNames(new String[] { Messages
 					//		.getString("ImporterPage.allFiles") }); //$NON-NLS-1$
 					String filename = fdl.open();
