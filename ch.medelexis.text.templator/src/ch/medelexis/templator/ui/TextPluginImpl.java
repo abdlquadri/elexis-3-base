@@ -89,7 +89,8 @@ public class TextPluginImpl implements ITextPlugin {
 	}
 	
 	@Override
-	public boolean insertTable(String place, int properties, String[][] contents, int[] columnSizes){
+	public boolean insertTable(String place, int properties, String[][] contents,
+		int[] columnSizes){
 		StringBuffer sbu = new StringBuffer();
 		for (int z = 0; z < contents.length; z++) {
 			for (int s = 0; s < contents[z].length; s++) {
@@ -229,13 +230,17 @@ public class TextPluginImpl implements ITextPlugin {
 	
 	@Override
 	public byte[] storeToByteArray(){
-		schemaDisplay.collect();
-		String s = schema.toXML();
-		try {
-			return s.getBytes("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// Will not happen
+		if (schemaDisplay.isDisposed()) {
 			return null;
+		} else {
+			schemaDisplay.collect();
+			String s = schema.toXML();
+			try {
+				return s.getBytes("utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// Will not happen
+				return null;
+			}
 		}
 	}
 	
@@ -247,8 +252,8 @@ public class TextPluginImpl implements ITextPlugin {
 	}
 	
 	@Override
-	public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-		throws CoreException{
+	public void setInitializationData(IConfigurationElement config, String propertyName,
+		Object data) throws CoreException{
 		// TODO Auto-generated method stub
 		
 	}
