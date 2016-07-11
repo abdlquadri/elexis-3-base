@@ -13,7 +13,7 @@
       <page
             category="ch.elexis.preferences.transporters"
             class="ch.elexis.laborimport.risch.PreferencePage"
-            id="ch.elexis.laborimport_risch.page1"
+            id="ch.elexis.laborimport_risch.prefs"
             name="Labor Risch">
       </page>
    </extension>
