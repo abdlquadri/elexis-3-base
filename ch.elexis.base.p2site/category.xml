@@ -192,6 +192,9 @@
    <feature url="features/ch.elexis.base.messages.feature_3.0.0.qualifier.jar" id="ch.elexis.base.messages.feature" version="3.0.0.qualifier">
       <category name="ch.elexis.base"/>
    </feature>
+   <feature url="features/ch.elexis.laborimport_risch.feature_1.0.0.qualifier.jar" id="ch.elexis.laborimport_risch.feature" version="1.0.0.qualifier">
+      <category name="ch.rgw.ungrad.extlab"/>
+   </feature>
    <category-def name="ch.rgw.ungrad.labconnect" label="Laborytory devices connect">
       <description>
          Fetaures to connect Elexis with lab devices
